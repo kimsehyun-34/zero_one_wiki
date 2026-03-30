@@ -282,6 +282,29 @@ body {
     font-weight: 600;
 }
 
+/* 튜토리얼 이미지 */
+.tutorial-img {
+    display: block;
+    margin: 12px 0 16px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    max-width: 100%;
+    height: auto;
+}
+
+.tutorial-img-sm {
+    max-width: 220px;
+}
+
+.tutorial-img-md {
+    max-width: 380px;
+}
+
+.tutorial-img-lg {
+    max-width: 620px;
+}
+
 /* 본문 영역 */
 .main {
     margin-left: var(--sidebar-width);

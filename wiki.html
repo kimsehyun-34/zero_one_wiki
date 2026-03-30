@@ -239,22 +239,6 @@
                 <p style="margin:0; color:#0f172a; font-weight:600;">핵심은 화려함보다 읽히는 구조입니다.</p>
             </div>
 
-            <p>좋은 예시의 공통점은 아래와 같습니다.</p>
-            <ul>
-                <li>첫 화면에서 누가 만든 페이지인지 바로 보임</li>
-                <li>관심사와 경험이 짧게라도 정리되어 있음</li>
-                <li>링크가 실제로 연결되어 있음</li>
-                <li>텍스트가 너무 빽빽하지 않음</li>
-            </ul>
-
-            <p>반대로 아래와 같은 상태는 피하는 편이 좋습니다.</p>
-            <ul>
-                <li>이름만 있고 나머지 내용이 비어 있음</li>
-                <li>너무 긴 문단만 있고 구분이 없음</li>
-                <li>링크 버튼이 있어 보이지만 실제 주소가 없음</li>
-                <li>LLM이 넣은 영어 문장이 그대로 남아 있음</li>
-            </ul>
-
             <div class="page-nav">
                 <a href="#" onclick="showPage('intro')">
                     <span class="nav-label">이전</span>
@@ -297,10 +281,10 @@
             <h2 id="components-history">2.2 개인 이력</h2>
             <p>지금까지 했던 활동이나 경험을 간단히 정리하면 페이지가 훨씬 구체적으로 보입니다.</p>
             <ul>
-                <li><strong>동아리 활동 경험</strong>: 운영진 경험, 참여한 세션, 맡았던 역할</li>
+                <li><strong>동아리 활동 경험</strong>: 참여한 세션, 맡았던 역할</li>
                 <li><strong>대회 출전 경험</strong>: 해커톤, 공모전, 교내 대회, 발표 경험</li>
                 <li><strong>공부 경험</strong>: 독학한 기술, 들은 강의, 만든 미니 프로젝트</li>
-                <li><strong>스킬 / 자격증</strong>: 써 본 언어, 툴, 취득 자격증</li>
+                <li><strong>스킬 / 자격증</strong>: 사용 가능한 언어, Tool, 취득 자격증</li>
             </ul>
             <p>이력은 길게 서술하지 않아도 괜찮습니다. 아래처럼 한 줄 항목으로 적어도 충분히 전달됩니다.</p>
 
@@ -309,7 +293,7 @@
 - 교내 해커톤 참가
 - HTML/CSS 독학 중
 - Python 기초 문법 학습 완료
-- SQLD 준비 중</code></pre>
+- 정보처리기사 준비 중</code></pre>
 
             <p>특히 개인 이력은 "내가 무엇을 해봤는지"가 보이게 쓰는 것이 중요합니다. 아직 큰 성과가 없더라도 아래 항목들은 전부 의미 있는 재료입니다.</p>
             <ul>
@@ -320,7 +304,6 @@
             </ul>
 
             <div class="callout callout-tip">
-                <div class="callout-title">부담 줄이는 방법</div>
                 길게 쓰지 않아도 됩니다. 한 줄 소개 + 짧은 항목 3~5개만 있어도 충분히 좋은 개인 페이지가 됩니다.
             </div>
 
@@ -392,23 +375,103 @@
             <p>이번 섹션은 "설명"이 아니라 실제 작업 순서에 가깝습니다. 가능하면 읽기만 하지 말고, 바로 따라하면서 진행하는 것이 좋습니다.</p>
 
             <h2 id="tutorial-step1">3.1 step 1. <code>.html</code> 파일 생성하기</h2>
+            <p>HTML 파일은 일반 텍스트 파일과 똑같이 생겼지만, 확장자가 <code>.html</code>로 끝나는 파일입니다. 브라우저는 이 확장자를 보고 "웹페이지로 열어야겠다"고 판단합니다. 이 단계에서는 그 파일을 직접 만들고, 메모장으로 열 준비를 합니다.</p>
+
+            <h3>① 새 텍스트 파일 만들기</h3>
             <ol>
-                <li>바탕화면이나 작업 폴더에 새 텍스트 파일을 만듭니다.</li>
-                <li>파일 이름을 <code>index.html</code>로 바꿉니다.</li>
-                <li>확장자가 보이지 않으면 파일 탐색기에서 <strong>보기 → 표시 → 파일 확장명</strong>을 켭니다.</li>
-                <li>메모장으로 파일을 엽니다.</li>
+                <li>바탕화면의 빈 곳, 또는 작업할 폴더 안의 빈 곳에서 <strong>마우스 오른쪽 버튼</strong>을 클릭합니다.</li>
+                <li>메뉴에서 <strong>새로 만들기</strong>를 선택합니다.
+                    <img src="images/step1-0.png" alt="우클릭 컨텍스트 메뉴" class="tutorial-img tutorial-img-sm">
+                </li>
+                <li>하위 메뉴에서 <strong>텍스트 문서</strong>를 클릭합니다.
+                    <img src="images/step1-1.png" alt="새로 만들기 서브메뉴 - 텍스트 문서 선택" class="tutorial-img tutorial-img-md">
+                </li>
+                <li><code>새 텍스트 문서.txt</code>라는 이름의 파일이 생성됩니다. 아직 이름을 수정하지 마세요.</li>
+                <img src="images/step1-2.png" alt="파일이 생성" class="tutorial-img tutorial-img-md">
             </ol>
-            <p>여기서 가장 자주 생기는 실수는 파일 이름이 실제로는 <code>index.html.txt</code>인데 겉으로만 안 보이는 경우입니다. 파일 확장명을 켜 두면 이런 실수를 줄일 수 있습니다.</p>
-            <p>메모장을 여는 이유는 가장 단순한 환경에서 시작하기 위해서입니다. 지금은 좋은 도구보다 <strong>파일 하나가 곧 웹페이지가 되는 감각</strong>을 먼저 익히는 것이 중요합니다.</p>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">폴더를 미리 만들어 두면 편합니다</div>
+                바탕화면에 바로 만들어도 되지만, <code>my-page</code>처럼 이름 붙인 폴더를 하나 만들고 그 안에서 시작하면 나중에 파일을 찾기 쉽습니다.
+            </div>
+
+            <h3>② 파일 확장명 보이게 설정하기</h3>
+            <p>Windows는 기본적으로 파일 확장자(<code>.txt</code>, <code>.html</code> 등)를 숨겨서 보여줍니다. 이름을 바꿀 때 실수를 막으려면 먼저 확장자가 보이도록 설정을 바꿔야 합니다.</p>
+            <ol>
+                <li>파일 탐색기를 엽니다. (바탕화면에서 작업 중이라면 바탕화면 파일을 그냥 우클릭해도 됩니다.)
+                    <img src="images/step1-3.png" alt="파일 탐색기" class="tutorial-img tutorial-img-sm">
+                </li>
+                <li>탐색기 상단 메뉴에서 <strong>보기</strong>를 클릭합니다.
+                    <img src="images/step1-4.png" alt="보기 메뉴" class="tutorial-img tutorial-img-lg">
+                </li>
+                <li><strong>표시</strong>를 클릭합니다.</li>
+                <li><strong>파일 확장명</strong> 항목을 클릭해 체크합니다.
+                    <img src="images/step1-5.png" alt="파일 확장명 설정" class="tutorial-img tutorial-img-lg">
+                </li>
+                <li>파일 이름이 <code>새 텍스트 문서.txt</code>처럼 끝부분의 <code>.txt</code>까지 보이면 설정이 된 것입니다.</li>
+            </ol>
+
+            <div class="callout callout-info">
+                <div class="callout-title">확장명이 이미 보인다면</div>
+                파일 이름에 이미 <code>.txt</code>가 보이고 있다면 이 단계는 건너뛰어도 됩니다.
+            </div>
+
+            <h3>③ 파일 이름을 <code>index.html</code>로 바꾸기</h3>
+            <p>이제 파일 이름 전체를 <code>index.html</code>로 바꿉니다. 기존 <code>.txt</code>까지 전부 지우고 새로 입력해야 합니다.</p>
+            <ol>
+                <li>방금 만든 <code>새 텍스트 문서.txt</code> 파일에 마우스를 이동시킨 후,</li>
+                <li><strong>마우스 오른쪽 버튼</strong>을 클릭합니다.</li>
+                <li>메뉴에서 <strong>이름 바꾸기</strong>를 선택합니다.
+                    <img src="images/step1-6.png" alt="파일 이름 변경" class="tutorial-img tutorial-img-sm">
+                </li>
+                <li>이름 전체가 선택된 상태로 편집 가능해집니다.</li>
+                <li>기존 이름을 모두 지우고 <code>index.html</code>이라고 입력합니다.
+                    <img src="images/step1-7.png" alt="index.html 파일 아이콘" class="tutorial-img tutorial-img-md">
+                </li>
+                <li><strong>Enter</strong>를 누릅니다.</li>
+                <li>"확장명을 바꾸면 파일을 사용할 수 없게 될 수도 있습니다" 라는 경고창이 뜨면 <strong>예</strong>를 클릭합니다. 이건 정상입니다.
+                    <img src="images/step1-8.png" alt="확장명 변경 경고" class="tutorial-img tutorial-img-md">
+                </li>
+            </ol>
+            <p>이름을 바꾼 후 파일 아이콘이 아래처럼 보이면 제대로 된 것입니다.</p>
+            <img src="images/step1-9.png" alt="index.html 파일 아이콘" class="tutorial-img tutorial-img-md">
 
             <div class="callout callout-warn">
-                <div class="callout-title">주의</div>
-                파일 이름이 <code>index.html.txt</code>처럼 끝나면 아직 HTML 파일이 아닙니다. 맨 끝이 반드시 <code>.html</code>이어야 합니다.
+                <div class="callout-title">가장 흔한 실수 — index.html.txt</div>
+                확장명이 숨겨진 상태에서 이름을 <code>index.html</code>로 입력하면 실제 파일 이름은 <code>index.html.txt</code>가 됩니다. 브라우저에서 열었을 때 코드가 그대로 글자로 보인다면 이 실수일 가능성이 높습니다. 파일 확장명을 반드시 먼저 켜 두세요.
+            </div>
+
+            <h3>④ 메모장으로 파일 열기</h3>
+            <p><code>.html</code> 파일은 <strong>더블클릭하면 브라우저로 열립니다.</strong> 코드를 직접 작성하거나 수정하려면 반드시 메모장(텍스트 편집기)으로 따로 열어야 합니다.</p>
+
+            <div class="callout callout-warn">
+                <div class="callout-title">.txt 파일과 다른 점</div>
+                <code>.txt</code> 파일은 더블클릭하면 바로 메모장이 열리지만, <code>.html</code> 파일은 더블클릭하면 브라우저가 열립니다. 코드를 편집하려면 반드시 아래 방법으로 열어야 합니다.
+            </div>
+
+            <ol>
+                <li><code>index.html</code> 파일 위에서 <strong>마우스 오른쪽 버튼</strong>을 클릭합니다.</li>
+                <li>메뉴에서 <strong>메모장에서 편집</strong>을 클릭합니다.
+                    <img src="images/step2-0.png" alt="우클릭 - 메모장에서 편집" class="tutorial-img tutorial-img-md">
+                </li>
+                <li>메모장이 열리고 내용이 비어 있으면 준비 완료입니다.
+                    <img src="images/step2-1.png" alt="메모장으로 열린 index.html" class="tutorial-img tutorial-img-lg">
+                </li>
+            </ol>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">메모장에서 편집이 없을 때</div>
+                우클릭 메뉴에 <strong>메모장에서 편집</strong>이 보이지 않으면 <strong>연결 프로그램 → 메모장</strong>을 선택합니다.<br>"항상 이 앱으로 열기"는 체크하지 않는 것이 좋습니다.
             </div>
 
             <h2 id="tutorial-step2">3.2 step 2. LLM으로 파일 작성하기</h2>
             <p>ChatGPT, Gemini, Claude 중 하나를 열고, 아래처럼 구체적으로 요청합니다.</p>
-            <p>이때 가장 중요한 것은 <strong>원하는 요소를 빠짐없이 적는 것</strong>입니다. 이름, 소개, 관심사, 경험, 링크처럼 재료를 구체적으로 적을수록 결과도 덜 엇나갑니다.</p>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">프롬프트(Prompt)란?</div>
+                LLM에게 보내는 지시문입니다. <strong>구체적으로 적을수록 결과가 좋아집니다.</strong><br>
+                예) "자기소개 페이지 만들어줘" → "이름, 관심사 3개, GitHub 링크를 넣은 자기소개 HTML 페이지를 전체 코드로 만들어줘"
+            </div>
 
             <h3 id="tutorial-prompt">프롬프트 예시 제시</h3>
 <div class="code-header"><span>프롬프트 예시</span></div>
@@ -434,7 +497,7 @@
                 <li>"전체 HTML 코드만 출력"처럼 출력 형식도 같이 지정하기</li>
             </ul>
 
-            <h3 id="tutorial-copy">프롬프트 출력 결과 그대로 복붙</h3>
+            <h3 id="tutorial-copy">프롬프트 출력 결과 복사/붙여넣기</h3>
             <ol>
                 <li>프롬프트를 보냅니다.</li>
                 <li>응답으로 나온 <strong>전체 HTML 코드</strong>를 복사합니다.</li>
@@ -469,7 +532,8 @@
 
             <h2 id="tutorial-step4">3.4 step 4. LLM으로 파일 수정하기</h2>
             <p>첫 결과물이 마음에 들지 않으면, 지금 파일 내용을 그대로 보내고 수정 요구를 적으면 됩니다.</p>
-            <p>보통 첫 출력은 100점짜리가 아닙니다. 그래서 이 단계가 가장 중요합니다. 실제 완성도는 첫 생성보다 <strong>수정 요청을 얼마나 잘하느냐</strong>에서 갈립니다.</p>
+            <p>보통 첫 출력은 100점짜리가 아닙니다. 그래서 이 단계가 가장 중요합니다. 
+                <br> 실제 완성도는 첫 생성보다 <strong>수정 요청을 얼마나 잘하느냐</strong>에서 갈립니다.</p>
 
             <h3 id="tutorial-request">채팅에 파일 내용 복사하고 요구사항 전달</h3>
             <ol>
@@ -490,8 +554,8 @@
 <div class="code-header"><span>수정 요청 예시</span></div>
 <pre><code>아래 HTML을 수정해줘.
 - 배경색을 더 밝게
+- 이름 글자 더 크게
 - 관심사 카드처럼 보이게
-- 블로그 링크 버튼 추가
 - 전체 코드 다시 출력해줘
 
 [여기에 현재 index.html 전체 붙여넣기]</code></pre>
@@ -509,9 +573,7 @@
             </div>
 
             <h2 id="tutorial-step5">3.5 step 5. 홈페이지 제출</h2>
-            <p>이 부분은 실제 제출 경로와 제출 방식이 확정되어야 정확하게 적을 수 있습니다. 현재 단계에서는 내용을 임의로 채우지 않고 비워 둡니다.</p>
-
-            <div style="min-height:160px; border:1px dashed #c9d8ea; border-radius:16px; background:#f8fbff;"></div>
+            <p>추후 보충</p>
 
             <div class="page-nav">
                 <a href="#" onclick="showPage('components')">
