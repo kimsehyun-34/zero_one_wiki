@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영하나 Wiki</title>
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+    </button>
+    <a href="#" class="header-logo" onclick="showPage('intro')">
+        <span class="logo-badge"><span class="zero">0</span>1</span>
+        <span class="logo-text">영하나 Wiki</span>
+    </a>
+    <div class="header-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" placeholder="검색어를 입력하세요..." id="searchInput" onkeyup="handleSearch(event)">
+    </div>
+</header>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Sidebar -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<nav class="sidebar" id="sidebar">
+
+    <div class="sidebar-section">
+        <div class="sidebar-section-title">시작하기</div>
+        <a class="sidebar-item active" data-page="intro" onclick="showPage('intro')">
+            <span class="item-number">00</span> 튜토리얼 소개
+        </a>
+    </div>
+
+    <div class="sidebar-section">
+        <div class="sidebar-section-title">웹 개발 기초</div>
+        <a class="sidebar-item" data-page="dev-basics" onclick="showPage('dev-basics')">
+            <span class="item-number">01</span> 웹페이지란?
+        </a>
+        <a class="sidebar-item" data-page="setup" onclick="showPage('setup')">
+            <span class="item-number">02</span> 개발 환경 준비
+        </a>
+        <a class="sidebar-item" data-page="dev-tools" onclick="showPage('dev-tools')">
+            <span class="item-number">03</span> HTML 기초
+        </a>
+        <a class="sidebar-item" data-page="git-basics" onclick="showPage('git-basics')">
+            <span class="item-number">04</span> CSS 기초
+        </a>
+    </div>
+
+    <div class="sidebar-section">
+        <div class="sidebar-section-title">AI 개발 도구</div>
+        <a class="sidebar-item" data-page="ai-tools" onclick="showPage('ai-tools')">
+            <span class="item-number">05</span> GitHub Copilot
+        </a>
+        <a class="sidebar-item" data-page="ai-prompt" onclick="showPage('ai-prompt')">
+            <span class="item-number">06</span> PR 페이지 제작
+        </a>
+    </div>
+
+    <div class="sidebar-section">
+        <div class="sidebar-section-title">마무리</div>
+        <a class="sidebar-item" data-page="submit" onclick="showPage('submit')">
+            <span class="item-number">07</span> 제출하기
+        </a>
+        <a class="sidebar-item" data-page="resources" onclick="showPage('resources')">
+            <span class="item-number">08</span> 더 배우고 싶다면
+        </a>
+    </div>
+
+</nav>
+
+<!-- Main Content -->
+<main class="main">
+    <div class="content" id="contentArea">
+
+        <!-- ============================================ -->
+        <!-- Page: intro (00_시작하기) -->
+        <!-- ============================================ -->
+        <div class="page" id="page-intro">
+            <div class="breadcrumb">
+                <a href="#" onclick="showPage('intro')">홈</a>
+                <span>/</span>
+                <span>튜토리얼 소개</span>
+            </div>
+
+            <h1 class="page-title">나만의 PR 웹 페이지 만들기</h1>
+            <p class="page-meta">튜토리얼 소개</p>
+
+            <p>이 튜토리얼을 완료하면, <strong>자기 자신을 소개하는 웹 페이지</strong>를 직접 만들어 영하나 홈페이지에 게시할 수 있습니다.</p>
+            <p>코딩을 전혀 몰라도 괜찮습니다. AI 도구(GitHub Copilot)가 대부분의 코드를 생성해 줄 것이고, 여러분은 <strong>무엇을 만들고 싶은지</strong> 설명하는 데 집중하면 됩니다.</p>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">Tip</div>
+                왼쪽 사이드바를 통해 원하는 챕터로 이동할 수 있습니다. 처음이라면 순서대로 읽는 것을 권장합니다.
+            </div>
+
+            <h2>목차</h2>
+            <table>
+                <thead><tr><th>챕터</th><th>제목</th><th>예상 소요 시간</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>웹페이지란 무엇인가</td><td><span class="time-badge">10분</span></td></tr>
+                    <tr><td>2</td><td>개발 환경 준비하기</td><td><span class="time-badge">15분</span></td></tr>
+                    <tr><td>3</td><td>HTML 기초: 웹 페이지의 뼈대</td><td><span class="time-badge">20분</span></td></tr>
+                    <tr><td>4</td><td>CSS 기초: 웹 페이지 꾸미기</td><td><span class="time-badge">15분</span></td></tr>
+                    <tr><td>5</td><td>GitHub Copilot 활용하기</td><td><span class="time-badge">20분</span></td></tr>
+                    <tr><td>6</td><td>PR 페이지 제작 실습</td><td><span class="time-badge">40분</span></td></tr>
+                    <tr><td>7</td><td>영하나 홈페이지에 제출하기</td><td><span class="time-badge">10분</span></td></tr>
+                    <tr><td>8</td><td>더 배우고 싶다면</td><td><span class="time-badge">5분</span></td></tr>
+                </tbody>
+            </table>
+            <p style="color:var(--text-secondary); font-size:14px;">총 예상 소요 시간: <strong>약 2시간 15분</strong></p>
+
+            <h2>시작하기 전에</h2>
+            <ul>
+                <li><strong>필요한 것</strong>: 노트북 또는 데스크탑 PC, 인터넷 연결</li>
+                <li><strong>사전 지식</strong>: 없음 (완전 이보자 기준으로 작성되었습니다)</li>
+                <li><strong>결과물</strong>: 본인의 이름, 사진, 관심사, 경험 등을 담은 웹 페이지 1개</li>
+            </ul>
+
+            <div class="callout callout-info">
+                <div class="callout-title">Info</div>
+                막히는 부분이 있으면 디스코드 질문답변 채널을 적극 활용하세요!
+            </div>
+
+            <div class="page-nav">
+                <div></div>
+                <a href="#" class="next" onclick="showPage('dev-basics')">
+                    <span class="nav-label">다음</span>
+                    <span class="nav-title">웹페이지란? &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- Page: setup (02_개발환경_준비하기) -->
+        <!-- ============================================ -->
+        <div class="page" id="page-setup" style="display:none;">
+            <div class="breadcrumb">
+                <a href="#" onclick="showPage('intro')">홈</a>
+                <span>/</span>
+                <span>개발 환경 준비</span>
+            </div>
+            <h1 class="page-title">개발 환경 준비하기</h1>
+            <p class="page-meta">챕터 2</p>
+
+            <p>코드를 작성하려면 도구가 필요합니다. 이 챕터에서는 2가지를 설치합니다.</p>
+            <ul>
+                <li><strong>Visual Studio Code (VS Code)</strong> — 코드 편집기</li>
+                <li><strong>GitHub Copilot</strong> — AI 코딩 어시스턴트</li>
+            </ul>
+
+            <h2>2.1 Visual Studio Code 설치</h2>
+            <p>VS Code는 전 세계에서 가장 많이 사용되는 코드 편집기입니다. 메모장과 비슷하지만, 코드를 작성하기에 훨씬 편리한 기능들을 제공합니다.</p>
+
+            <h3>설치 방법</h3>
+            <ol>
+                <li><a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a>에 접속합니다.</li>
+                <li>본인의 운영체제(Windows / macOS)에 맞는 버전을 다운로드합니다.</li>
+                <li>다운로드된 설치 파일을 실행하고, 기본 설정 그대로 설치를 완료합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>VS Code 공식 사이트 접속 → 다운로드 버튼 클릭 → 설치 과정 전체 화면 비디오</div>
+            </div>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">설치 확인</div>
+                설치가 완료되면 VS Code를 실행합니다. Welcome 탭이 열리는 화면이 나타나면 성공입니다.
+            </div>
+
+            <h2>2.2 VS Code 한국어 설정 (선택)</h2>
+            <p>VS Code는 기본적으로 영어로 되어 있습니다. 한국어로 변경하고 싶다면 아래 절차를 따릅니다.</p>
+            <ol>
+                <li>좌측 사이드바에서 <strong>Extensions</strong> 아이콘(블록 모양)을 클릭합니다.</li>
+                <li>검색창에 <code>Korean Language Pack</code>을 입력합니다.</li>
+                <li><strong>Korean Language Pack for Visual Studio Code</strong>를 설치합니다.</li>
+                <li>우측 하단에 나타나는 <strong>Change Language and Restart</strong> 버튼을 클릭합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>Extensions 탭에서 Korean Language Pack 검색 → 설치 → 재시작하여 한국어로 변경되는 전체 과정</div>
+            </div>
+
+            <div class="callout callout-info">
+                <div class="callout-title">Info</div>
+                한국어 설정은 필수가 아닙니다. 개발 관련 자료 대부분이 영어로 되어 있기 때문에, 영어에 익숙해지는 것도 좋은 선택입니다.
+            </div>
+
+            <h2>2.3 GitHub Copilot 설정</h2>
+            <p>GitHub Copilot은 코드를 작성할 때 AI가 자동으로 코드를 제안해 주는 도구입니다. 대학교 <strong>Education 라이선스</strong>를 통해 무료로 사용할 수 있습니다.</p>
+
+            <h3>Step 1: GitHub 계정 생성</h3>
+            <ol>
+                <li><a href="https://github.com" target="_blank">github.com</a>에 접속합니다.</li>
+                <li><strong>Sign up</strong> 버튼을 클릭합니다.</li>
+                <li>학교 이메일(또는 개인 이메일)로 계정을 생성합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>GitHub 회원가입 페이지에서 이메일 입력 → 비밀번호 설정 → 계정 생성 완료까지의 과정</div>
+            </div>
+
+            <h3>Step 2: GitHub Education 인증</h3>
+            <p>학생 인증을 완료하면 GitHub Copilot을 무료로 사용할 수 있습니다.</p>
+            <ol>
+                <li><a href="https://education.github.com/benefits" target="_blank">education.github.com/benefits</a>에 접속합니다.</li>
+                <li><strong>Get student benefits</strong> 버튼을 클릭합니다.</li>
+                <li>학교 이메일 인증 또는 학생증 사진 업로드로 학생 신분을 인증합니다.</li>
+                <li>승인까지 일정 시일이 소요될 수 있습니다.</li>
+            </ol>
+
+            <div class="callout callout-warn">
+                <div class="callout-title">주의</div>
+                학생 인증이 승인될 때까지 시간이 걸릴 수 있습니다. 튜토리얼 진행에 차질이 없도록, 이 단계를 가장 먼저 완료해 주세요. 인증이 지연될 경우 디스코드에서 이운지에게 문의하세요.
+            </div>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>GitHub Education 페이지 접속 → 학생 인증 신청 과정 화면 비디오</div>
+            </div>
+
+            <h3>Step 3: VS Code에 GitHub Copilot 설치</h3>
+            <ol>
+                <li>VS Code를 실행합니다.</li>
+                <li>좌측 <strong>Extensions</strong> 아이콘을 클릭합니다.</li>
+                <li>검색창에 <code>GitHub Copilot</code>을 입력합니다.</li>
+                <li><strong>GitHub Copilot</strong> 확장을 설치합니다.</li>
+                <li>설치 후 우측 하단에 GitHub 로그인 요청이 나타납니다. 로그인합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>VS Code Extensions에서 GitHub Copilot 검색 → 설치 → GitHub 계정 로그인 연동 과정</div>
+            </div>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">설치 확인</div>
+                설치가 정상적으로 완료되면, VS Code 우측 하단 상태바에 Copilot 아이콘이 나타납니다.
+            </div>
+
+            <h2>2.4 작업 폴더 만들기</h2>
+            <p>코드 파일을 저장할 폴더를 만들어 둡니다.</p>
+            <ol>
+                <li>바탕화면 또는 원하는 위치에 <code>my-pr-page</code> 폴더를 생성합니다.</li>
+                <li>VS Code에서 <strong>File → Open Folder</strong>(파일 → 폴더 열기)를 클릭합니다.</li>
+                <li>방금 만든 <code>my-pr-page</code> 폴더를 선택합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>바탕화면에서 폴더 생성 → VS Code에서 Open Folder로 해당 폴더를 여는 과정</div>
+            </div>
+
+            <h2>2.5 첫 번째 HTML 파일 만들기</h2>
+            <p>환경이 제대로 구성되었는지 확인하기 위해, 간단한 HTML 파일을 만들어 봅니다.</p>
+            <ol>
+                <li>VS Code Explorer 패널에서 <strong>새 파일</strong> 아이콘을 클릭합니다.</li>
+                <li>파일명을 <code>index.html</code>로 입력합니다.</li>
+                <li>아래 코드를 입력합니다.</li>
+            </ol>
+
+<div class="code-header"><span>index.html</span></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;테스트&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;환경 설정 완료!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <ol start="4">
+                <li><code>Ctrl + S</code> (macOS: <code>Cmd + S</code>)로 저장합니다.</li>
+                <li>파일을 더블클릭하거나 브라우저로 드래그하여 열어봅니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>VS Code에서 index.html 파일 생성 → 코드 입력 → 저장 → 브라우저에서 열어 확인하는 전체 과정</div>
+            </div>
+
+            <p>브라우저에 "환경 설정 완료!"가 표시되면 모든 준비가 끝났습니다.</p>
+
+            <div class="page-nav">
+                <a href="#" onclick="showPage('dev-basics')">
+                    <span class="nav-label">이전</span>
+                    <span class="nav-title">&larr; 웹페이지란?</span>
+                </a>
+                <a href="#" class="next" onclick="showPage('dev-tools')">
+                    <span class="nav-label">다음</span>
+                    <span class="nav-title">HTML 기초 &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- Page: dev-basics (01_웹페이지란_무엇인가) -->
+        <!-- ============================================ -->
+        <div class="page" id="page-dev-basics" style="display:none;">
+            <div class="breadcrumb">
+                <a href="#" onclick="showPage('intro')">홈</a>
+                <span>/</span>
+                <span>웹페이지란?</span>
+            </div>
+            <h1 class="page-title">웹 페이지란 무엇인가</h1>
+            <p class="page-meta">챕터 1</p>
+
+            <h2>1.1 웹 페이지의 실체</h2>
+            <p>여러분이 매일 보는 Instagram, Naver, YouTube — 이 모든 것은 <strong>웹 페이지</strong>입니다.</p>
+            <p>웹 페이지의 실체는 단순합니다. <strong>텍스트 파일</strong>입니다. 브라우저(Chrome, Safari 등)가 이 텍스트 파일을 읽어서, 화면에 예쁘게 그려주는 것뿐입니다.</p>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>브라우저에서 "페이지 소스 보기(Ctrl+U)"를 실행하여 실제 HTML 코드가 나타나는 과정<br>추천: 네이버 메인 페이지에서 우클릭 → 페이지 소스 보기 실행하는 화면 비디오</div>
+            </div>
+
+            <h2>1.2 웹 페이지를 구성하는 3가지 언어</h2>
+            <p>웹 페이지는 크게 3가지 언어로 이루어져 있습니다.</p>
+
+            <table>
+                <thead><tr><th>언어</th><th>역할</th><th>비유</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>HTML</strong></td><td>구조와 내용</td><td>건물의 뼈대, 벽, 방</td></tr>
+                    <tr><td><strong>CSS</strong></td><td>디자인과 스타일</td><td>페인트, 인테리어, 가구 배치</td></tr>
+                    <tr><td><strong>JavaScript</strong></td><td>동작과 기능</td><td>엘리베이터, 자동문, 조명 스위치</td></tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-info">
+                <div class="callout-title">이번 튜토리얼 범위</div>
+                제출용 PR 페이지는 <strong>HTML과 CSS 중심</strong>으로 만들면 충분합니다. 다만 아래 실험실에서 JavaScript 버튼 동작까지 한 번 눌러보면, 세 언어가 어떤 역할을 맡는지 훨씬 빠르게 감이 옵니다.
+            </div>
+
+            <p>아래 통합 플레이그라운드에서 같은 화면을 <strong>HTML(내용)</strong>, <strong>CSS(디자인)</strong>, <strong>JavaScript(동작)</strong>로 나누어 살펴보세요. 코드를 수정하면 자동으로 미리보기가 갱신됩니다.</p>
+
+            <div class="playground" id="pg-ch1-trio">
+                <div class="playground-header">
+                    <div class="playground-tabs">
+                        <button class="playground-tab active" data-lang="html">HTML</button>
+                        <button class="playground-tab" data-lang="css">CSS</button>
+                        <button class="playground-tab" data-lang="js">JS</button>
+                    </div>
+                    <div class="playground-actions">
+                        <span class="playground-label">LIVE</span>
+                        <button class="playground-btn playground-btn-run" onclick="runPlayground(this.closest('.playground'))">실행</button>
+                        <button class="playground-btn playground-btn-reset">초기화</button>
+                    </div>
+                </div>
+                <div class="playground-editor-wrap">
+                    <textarea class="playground-editor active" data-lang="html" rows="10"><section class="intro-card">
+    <p class="eyebrow">HTML + CSS + JavaScript</p>
+    <h1 id="intro-title">안녕하세요, 영하나!</h1>
+    <p id="intro-text">HTML은 내용을 만들고, CSS는 보기 좋게 꾸미고, JavaScript는 버튼을 눌렀을 때 반응하도록 만듭니다.</p>
+    <button id="intro-button">메시지 바꾸기</button>
+</section></textarea>
+                    <textarea class="playground-editor" data-lang="css" rows="20">body {
+    margin: 0;
+    padding: 24px;
+    background: linear-gradient(135deg, #f7fbff, #e8faf8);
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.intro-card {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 24px;
+    border-radius: 24px;
+    background: white;
+    box-shadow: 0 20px 45px rgba(29, 52, 97, 0.14);
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+    color: #0f766e;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+#intro-title {
+    margin: 0 0 12px;
+    font-size: 32px;
+}
+
+#intro-text {
+    margin: 0 0 18px;
+    color: #475569;
+    line-height: 1.7;
+}
+
+#intro-button {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 18px;
+    background: #1d3461;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}</textarea>
+                    <textarea class="playground-editor" data-lang="js" rows="18">const messages = [
+    '첫 번째 버튼 반응입니다. 이 문장은 JavaScript가 바꿨습니다.',
+    'HTML을 고치면 내용이 바뀌고, CSS를 고치면 분위기가 바뀝니다.',
+    '세 언어가 함께 작동하면 하나의 웹페이지가 됩니다.'
+];
+
+let index = 0;
+const button = document.getElementById('intro-button');
+const text = document.getElementById('intro-text');
+const title = document.getElementById('intro-title');
+
+button.addEventListener('click', () => {
+    index = (index + 1) % messages.length;
+    text.textContent = messages[index];
+    title.textContent = index === 2 ? '이제 구조가 보이죠?' : '안녕하세요, 영하나!';
+    console.log('현재 메시지 번호:', index + 1);
+});</textarea>
+                </div>
+                <div class="playground-preview-header">
+                    <div class="playground-preview-meta">
+                        <div class="playground-preview-dot"></div>
+                        <span>미리보기</span>
+                    </div>
+                </div>
+                <div class="playground-preview">
+                    <div class="playground-frame">
+                        <iframe sandbox="allow-scripts"></iframe>
+                    </div>
+                </div>
+                <div class="playground-console">
+                    <div class="playground-console-header">Console / Error</div>
+                    <div class="playground-console-output"></div>
+                </div>
+            </div>
+
+            <div class="playground-coach">
+                <div class="playground-coach-title">빠른 실험 미션</div>
+                <ul>
+                    <li>HTML 탭에서 제목이나 버튼 문구를 본인 스타일로 바꿔보세요.</li>
+                    <li>CSS 탭에서 배경색과 버튼 색을 바꿔서 분위기 차이를 느껴보세요.</li>
+                    <li>JS 탭의 <code>messages</code> 배열에 문장을 하나 더 추가해 버튼을 눌러보세요.</li>
+                </ul>
+            </div>
+
+            <h2>1.3 HTML 파일의 생김새</h2>
+            <p>아래는 가장 간단한 HTML 파일입니다.</p>
+
+<div class="code-header"><span>hello.html</span></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;내 페이지&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;안녕하세요!&lt;/h1&gt;
+    &lt;p&gt;제 이름은 홍길동입니다.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <p>이 코드를 브라우저에서 열면 아래와 같이 보입니다. <strong>직접 코드를 수정해 보세요!</strong></p>
+
+            <!-- Playground: 챕터1 - 첫 HTML -->
+            <div class="playground" id="pg-ch1-hello">
+                <div class="playground-header">
+                    <div class="playground-tabs">
+                        <button class="playground-tab active" data-lang="html">HTML</button>
+                    </div>
+                    <div class="playground-actions">
+                        <span class="playground-label">LIVE</span>
+                        <button class="playground-btn playground-btn-run" onclick="runPlayground(this.closest('.playground'))">실행</button>
+                        <button class="playground-btn playground-btn-reset">초기화</button>
+                    </div>
+                </div>
+                <div class="playground-editor-wrap">
+                    <textarea class="playground-editor active" data-lang="html" rows="6"><h1>안녕하세요!</h1>
+<p>제 이름은 홍길동입니다.</p>
+<p>이름을 수정해 보세요. 그리고 "실행" 버튼을 눌러보세요!</p></textarea>
+                </div>
+                <div class="playground-preview-header">
+                    <div class="playground-preview-dot"></div>
+                    미리보기
+                </div>
+                <div class="playground-preview">
+                    <iframe sandbox="allow-scripts"></iframe>
+                </div>
+            </div>
+
+            <p>각 부분이 무슨 역할을 하는지는 챕터 3에서 자세히 다룹니다. 지금은 "웹 페이지 = 텍스트 파일"이라는 것만 기억해 주세요.</p>
+
+            <h2>1.4 우리가 만들 PR 페이지</h2>
+            <p>최종 결과물은 아래와 같은 형태의 자기소개 웹 페이지입니다.</p>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">이미지 예정</div>
+                <div>이운지가 제작한 PR 페이지 완성 예시 스크린샷 (완성된 버전으로 미리 제작해서 캡처하는 것을 권장)</div>
+            </div>
+
+            <p>PR 페이지에 들어갈 내용:</p>
+            <ul>
+                <li><strong>기본 정보</strong>: 이름, 학과, 학번, 프로필 사진</li>
+                <li><strong>SNS 링크</strong>: Instagram, 블로그 등</li>
+                <li><strong>관심사</strong>: 관심 진로 분야, 취미</li>
+                <li><strong>경험</strong>: 동아리 활동, 대학 출전, 공부 경험 등</li>
+                <li><strong>스킬 &amp; 자격증</strong>: 보유 기술이나 자격증</li>
+            </ul>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">Tip</div>
+                이 페이지는 영하나 홈페이지에 공개됩니다. 2차 프로젝트에서 팀원을 구성할 때, 다른 분들이 여러분의 PR 페이지를 보고 함께할 팀원을 선택하게 됩니다. 정성껏 만들어 두면 좋은 팀원을 만날 확률이 올라갑니다.
+            </div>
+
+            <div class="page-nav">
+                <a href="#" onclick="showPage('intro')">
+                    <span class="nav-label">이전</span>
+                    <span class="nav-title">&larr; 튜토리얼 소개</span>
+                </a>
+                <a href="#" class="next" onclick="showPage('setup')">
+                    <span class="nav-label">다음</span>
+                    <span class="nav-title">개발 환경 준비 &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- Page: dev-tools (03_HTML_기초) -->
+        <!-- ============================================ -->
+        <div class="page" id="page-dev-tools" style="display:none;">
+            <div class="breadcrumb">
+                <a href="#" onclick="showPage('intro')">홈</a>
+                <span>/</span>
+                <span>HTML 기초</span>
+            </div>
+            <h1 class="page-title">HTML 기초: 웹 페이지의 뼈대</h1>
+            <p class="page-meta">챕터 3</p>
+
+            <p>이 챕터에서는 HTML의 핵심 개념만 빠르게 익힙니다. 모든 것을 외울 필요는 없습니다. GitHub Copilot이 코드를 대신 생성해 주기 때문에, <strong>개념만 이해</strong>하면 충분합니다.</p>
+
+            <h2>3.1 Tag(태그)란?</h2>
+            <p>HTML은 <strong>태그(tag)</strong>라는 것으로 이루어져 있습니다. 태그는 브라우저에게 "이 내용을 이렇게 표시해라"라고 알려주는 명령어입니다.</p>
+            <p>태그는 항상 <strong>여는 태그</strong>와 <strong>닫는 태그</strong>가 한 쌍을 이룹니다.</p>
+
+<pre><code>&lt;h1&gt;이것은 제목입니다&lt;/h1&gt;</code></pre>
+            <ul>
+                <li><code>&lt;h1&gt;</code> — 여는 태그 ("여기부터 제목이야")</li>
+                <li><code>&lt;/h1&gt;</code> — 닫는 태그 ("여기까지가 제목이야")</li>
+                <li>가운데 텍스트 — 실제로 화면에 표시되는 내용</li>
+            </ul>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>VS Code에서 &lt;h1&gt; 태그를 입력하고, 브라우저에서 실시간으로 결과가 나타나는 과정</div>
+            </div>
+
+            <h2>3.2 자주 사용하는 태그</h2>
+
+            <h3>제목 태그</h3>
+            <p>숫자가 커질수록 글자 크기가 작아집니다. <code>&lt;h1&gt;</code>부터 <code>&lt;h6&gt;</code>까지 있습니다. 직접 수정해 보세요!</p>
+
+            <!-- Playground: 제목+문단 태그 -->
+            <div class="playground" id="pg-ch3-headings">
+                <div class="playground-header">
+                    <div class="playground-tabs">
+                        <button class="playground-tab active" data-lang="html">HTML</button>
+                    </div>
+                    <div class="playground-actions">
+                        <span class="playground-label">LIVE</span>
+                        <button class="playground-btn playground-btn-run" onclick="runPlayground(this.closest('.playground'))">실행</button>
+                        <button class="playground-btn playground-btn-reset">초기화</button>
+                    </div>
+                </div>
+                <div class="playground-editor-wrap">
+                    <textarea class="playground-editor active" data-lang="html" rows="8"><h1>가장 큰 제목 (h1)</h1>
+<h2>두 번째 제목 (h2)</h2>
+<h3>세 번째 제목 (h3)</h3>
+<h4>네 번째 제목 (h4)</h4>
+
+<p>이것은 하나의 문단입니다. 문단 사이에는 자동으로 간격이 생깁니다.</p>
+<p>이것은 두 번째 문단입니다.</p></textarea>
+                </div>
+                <div class="playground-preview-header">
+                    <div class="playground-preview-dot"></div>
+                    미리보기
+                </div>
+                <div class="playground-preview">
+                    <iframe sandbox="allow-scripts"></iframe>
+                </div>
+            </div>
+
+            <h3>이미지 태그</h3>
+<pre><code>&lt;img src="photo.jpg" alt="내 사진"&gt;</code></pre>
+            <ul>
+                <li><code>src</code> — 이미지 파일의 경로 (파일명)</li>
+                <li><code>alt</code> — 이미지를 설명하는 텍스트</li>
+            </ul>
+            <div class="callout callout-info">
+                <div class="callout-title">Info</div>
+                <code>&lt;img&gt;</code> 태그는 닫는 태그가 없습니다. 이런 태그를 <strong>self-closing tag</strong>라고 합니다.
+            </div>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>img 태그로 이미지를 추가하고 브라우저에서 확인하는 과정. 사진 파일을 같은 폴더에 넣고, src에 파일명을 입력하는 과정 포함</div>
+            </div>
+
+            <h3>링크, 목록, div 태그</h3>
+            <p>링크(<code>&lt;a&gt;</code>), 목록(<code>&lt;ul&gt;</code>/<code>&lt;ol&gt;</code>), 구역(<code>&lt;div&gt;</code>) 태그를 아래에서 직접 실험해 보세요.</p>
+
+            <!-- Playground: 링크+목록+div -->
+            <div class="playground" id="pg-ch3-links">
+                <div class="playground-header">
+                    <div class="playground-tabs">
+                        <button class="playground-tab active" data-lang="html">HTML</button>
+                    </div>
+                    <div class="playground-actions">
+                        <span class="playground-label">LIVE</span>
+                        <button class="playground-btn playground-btn-run" onclick="runPlayground(this.closest('.playground'))">실행</button>
+                        <button class="playground-btn playground-btn-reset">초기화</button>
+                    </div>
+                </div>
+                <div class="playground-editor-wrap">
+                    <textarea class="playground-editor active" data-lang="html" rows="14"><h2>SNS 링크</h2>
+<a href="https://instagram.com/myid">내 인스타그램</a>
+
+<h2>관심 분야 (순서 없는 목록)</h2>
+<ul>
+    <li>웹 개발</li>
+    <li>인공지능</li>
+    <li>게임 개발</li>
+</ul>
+
+<h2>할 일 (순서 있는 목록)</h2>
+<ol>
+    <li>VS Code 설치</li>
+    <li>GitHub 가입</li>
+    <li>PR 페이지 만들기</li>
+</ol>
+
+<div style="background: #f0f0f0; padding: 16px; border-radius: 8px;">
+    <h3>div로 묶은 구역</h3>
+    <p>이렇게 div로 묶으면 CSS 스타일을 그룹에 적용할 수 있습니다.</p>
+</div></textarea>
+                </div>
+                <div class="playground-preview-header">
+                    <div class="playground-preview-dot"></div>
+                    미리보기
+                </div>
+                <div class="playground-preview">
+                    <iframe sandbox="allow-scripts"></iframe>
+                </div>
+            </div>
+
+            <h2>3.3 HTML 문서의 기본 구조</h2>
+            <p>모든 HTML 파일은 아래의 기본 구조를 따릅니다.</p>
+
+<div class="code-header"><span>기본 구조</span></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;페이지 제목&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 여기에 실제 보이는 내용을 작성합니다 --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <table>
+                <thead><tr><th>부분</th><th>역할</th></tr></thead>
+                <tbody>
+                    <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>"이 문서는 HTML5 문서입니다"라는 선언</td></tr>
+                    <tr><td><code>&lt;html&gt;</code></td><td>문서 전체를 감싸는 최상위 태그</td></tr>
+                    <tr><td><code>&lt;head&gt;</code></td><td>문서의 설정 정보 (탭 제목, 문서 인코딩 등). 화면에 직접 보이지 않음</td></tr>
+                    <tr><td><code>&lt;body&gt;</code></td><td>화면에 실제로 표시되는 모든 내용</td></tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">Tip</div>
+                이 구조를 외울 필요는 없습니다. GitHub Copilot에게 "HTML 기본 구조 만들어줘"라고 요청하면 자동으로 생성해 줍니다.
+            </div>
+
+            <h2>3.4 Attribute(속성)</h2>
+            <p>태그에 추가 정보를 넣을 때 <strong>속성(attribute)</strong>을 사용합니다.</p>
+
+<pre><code>&lt;a href="https://google.com" target="_blank"&gt;구글&lt;/a&gt;</code></pre>
+            <ul>
+                <li><code>href="https://google.com"</code> — 이동할 주소</li>
+                <li><code>target="_blank"</code> — 새 탭에서 열기</li>
+            </ul>
+            <p>속성은 항상 <strong>여는 태그 안에</strong> 작성하며, <code>속성명="값"</code> 형태를 따릅니다.</p>
+
+            <h2>3.5 실습: 간단한 자기소개 페이지</h2>
+            <p>지금까지 배운 태그를 조합하여 간단한 자기소개 페이지를 만들어 봅니다.</p>
+            <p><code>index.html</code> 파일을 열고 아래 코드로 교체합니다.</p>
+
+<div class="code-header"><span>index.html</span></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;홍길동 - 자기소개&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;홍길동&lt;/h1&gt;
+    &lt;p&gt;컴퓨터공학과 24학번&lt;/p&gt;
+
+    &lt;img src="profile.jpg" alt="프로필 사진"&gt;
+
+    &lt;h2&gt;관심 분야&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;웹 개발&lt;/li&gt;
+        &lt;li&gt;인공지능&lt;/li&gt;
+        &lt;li&gt;게임 개발&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h2&gt;SNS&lt;/h2&gt;
+    &lt;a href="https://instagram.com/example"&gt;Instagram&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <p>아래 플레이그라운드에서 직접 실행해 볼 수 있습니다. 이름이나 관심 분야를 바꿔보세요!</p>
+
+            <!-- Playground: 챕터3 자기소개 실습 -->
+            <div class="playground" id="pg-ch3-profile">
+                <div class="playground-header">
+                    <div class="playground-tabs">
+                        <button class="playground-tab active" data-lang="html">HTML</button>
+                    </div>
+                    <div class="playground-actions">
+                        <span class="playground-label">LIVE</span>
+                        <button class="playground-btn playground-btn-run" onclick="runPlayground(this.closest('.playground'))">실행</button>
+                        <button class="playground-btn playground-btn-reset">초기화</button>
+                    </div>
+                </div>
+                <div class="playground-editor-wrap">
+                    <textarea class="playground-editor active" data-lang="html" rows="14"><h1>홍길동</h1>
+<p>컴퓨터공학과 24학번</p>
+
+<h2>관심 분야</h2>
+<ul>
+    <li>웹 개발</li>
+    <li>인공지능</li>
+    <li>게임 개발</li>
+</ul>
+
+<h2>SNS</h2>
+<a href="https://instagram.com/example">Instagram</a></textarea>
+                </div>
+                <div class="playground-preview-header">
+                    <div class="playground-preview-dot"></div>
+                    미리보기
+                </div>
+                <div class="playground-preview">
+                    <iframe sandbox="allow-scripts"></iframe>
+                </div>
+            </div>
+
+            <div class="callout callout-info">
+                <div class="callout-title">Info</div>
+                아직 디자인이 적용되지 않아 허전하게 보일 수 있습니다. 다음 챕터에서 CSS를 적용하면 훨씬 보기 좋아집니다.
+            </div>
+
+            <div class="page-nav">
+                <a href="#" onclick="showPage('setup')">
+                    <span class="nav-label">이전</span>
+                    <span class="nav-title">&larr; 개발 환경 준비</span>
+                </a>
+                <a href="#" class="next" onclick="showPage('git-basics')">
+                    <span class="nav-label">다음</span>
+                    <span class="nav-title">CSS 기초 &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- Page: git-basics (04_CSS_기초) -->
+        <!-- ============================================ -->
+        <div class="page" id="page-git-basics" style="display:none;">
+            <div class="breadcrumb">
+                <a href="#" onclick="showPage('intro')">홈</a>
+                <span>/</span>
+                <span>CSS 기초</span>
+            </div>
+            <h1 class="page-title">CSS 기초: 웹 페이지 꾸미기</h1>
+            <p class="page-meta">챕터 4</p>
+
+            <p>HTML만으로는 텍스트와 이미지가 나열될 뿐, 디자인이 적용되지 않습니다. <strong>CSS(Cascading Style Sheets)</strong>를 사용하면 색상, 글꼴, 레이아웃 등을 자유롭게 조절할 수 있습니다.</p>
+
+            <h2>4.1 CSS를 적용하는 방법</h2>
+            <p>CSS를 HTML에 적용하는 방법은 여러 가지가 있지만, 이 튜토리얼에서는 가장 실용적인 방법을 사용합니다.</p>
+
+            <h3>방법: &lt;style&gt; 태그 사용 (Internal CSS)</h3>
+            <p>HTML 파일의 <code>&lt;head&gt;</code> 안에 <code>&lt;style&gt;</code> 태그를 추가합니다.</p>
+
+<div class="code-header"><span>index.html</span></div>
+<pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;내 페이지&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            background-color: #f0f0f0;
+            font-family: sans-serif;
+        }
+        h1 {
+            color: #333333;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">이 방법을 권장하는 이유</div>
+                PR 페이지에서는 <code>&lt;style&gt;</code> 태그로 CSS를 HTML 파일 안에 포함하는 방식을 권장합니다. 파일 하나로 관리할 수 있어 제출이 간편합니다.
+            </div>
+
+            <h2>4.2 CSS의 기본 문법</h2>
+            <p>CSS는 "어떤 요소에 어떤 스타일을 적용할 것인가"를 정의합니다.</p>
+
+<pre><code>선택자 {
+    속성: 값;
+}</code></pre>
+
+            <p>예시:</p>
+<pre><code>h1 {
+    color: blue;
+    font-size: 32px;
+    text-align: center;
+}</code></pre>
+            <ul>
+                <li><strong>선택자(Selector)</strong>: <code>h1</code> → 스타일을 적용할 대상</li>
+                <li><strong>속성(Property)</strong>: <code>color</code>, <code>font-size</code> → 변경할 항목</li>
+                <li><strong>값(Value)</strong>: <code>blue</code>, <code>32px</code> → 적용할 구체적인 값</li>
+            </ul>
+
+            <p>아래 플레이그라운드에서 CSS 값을 바꿔보세요. <code>color</code>를 <code>red</code>로, <code>font-size</code>를 <code>48px</code>로 바꾸면 어떻게 변할까요?</p>
+
+            <!-- Playground: CSS 기본 문법 -->
+            <div class="playground" id="pg-ch4-basic">
+                <div class="playground-header">
+                    <div class="playground-tabs">
+                        <button class="playground-tab active" data-lang="html">HTML</button>
+                        <button class="playground-tab" data-lang="css">CSS</button>
+                    </div>
+                    <div class="playground-actions">
+                        <span class="playground-label">LIVE</span>
+                        <button class="playground-btn playground-btn-run" onclick="runPlayground(this.closest('.playground'))">실행</button>
+                        <button class="playground-btn playground-btn-reset">초기화</button>
+                    </div>
+                </div>
+                <div class="playground-editor-wrap">
+                    <textarea class="playground-editor active" data-lang="html" rows="4"><h1>제목을 꾸며보자</h1>
+<p>이 문단은 CSS로 스타일링됩니다.</p>
+<p>CSS 탭을 눌러서 스타일을 수정해 보세요!</p></textarea>
+                    <textarea class="playground-editor" data-lang="css" rows="8">h1 {
+    color: blue;
+    font-size: 32px;
+    text-align: center;
+}
+
+p {
+    color: #666;
+    line-height: 1.8;
+}</textarea>
+                </div>
+                <div class="playground-preview-header">
+                    <div class="playground-preview-dot"></div>
+                    미리보기
+                </div>
+                <div class="playground-preview">
+                    <iframe sandbox="allow-scripts"></iframe>
+                </div>
+            </div>
+
+            <h2>4.3 자주 사용하는 CSS 속성</h2>
+
+            <h3>색상과 배경</h3>
+<pre><code>body {
+    background-color: #1a1a2e;    /* 배경색 */
+    color: #ffffff;               /* 글자색 */
+}</code></pre>
+
+            <h3>글꼴과 텍스트</h3>
+<pre><code>h1 {
+    font-size: 36px;              /* 글자 크기 */
+    font-weight: bold;            /* 글자 굵기 */
+    text-align: center;           /* 정렬: left, center, right */
+    line-height: 1.6;             /* 줄 간격 */
+}</code></pre>
+
+            <h3>여백과 간격</h3>
+<pre><code>div {
+    margin: 20px;                 /* 바깥 여백 */
+    padding: 16px;                /* 안쪽 여백 */
+}</code></pre>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">이미지 예정</div>
+                <div>margin과 padding의 차이를 시각적으로 보여주는 박스 모델 다이어그램<br>추천: 박스 안쪽(padding)과 바깥쪽(margin)을 색상으로 구분한 그림</div>
+            </div>
+
+            <h3>크기 조절</h3>
+<pre><code>img {
+    width: 200px;                 /* 너비 */
+    height: auto;                 /* 비율 유지 */
+    border-radius: 50%;           /* 원형으로 만들기 */
+}</code></pre>
+
+            <h3>테두리</h3>
+<pre><code>div {
+    border: 2px solid #cccccc;    /* 테두리 */
+    border-radius: 12px;          /* 둥근 모서리 */
+}</code></pre>
+
+            <h2>4.4 Selector(선택자) 종류</h2>
+            <p>스타일을 적용할 대상을 지정하는 3가지 기본 방법입니다.</p>
+
+            <h3>태그 선택자</h3>
+            <p>해당 태그 <strong>전부</strong>에 적용됩니다.</p>
+<pre><code>p {
+    color: gray;
+}</code></pre>
+
+            <h3>Class 선택자</h3>
+            <p>특정 그룹에만 적용할 때 사용합니다. HTML에서 <code>class</code> 속성을 부여하고, CSS에서 <code>.</code>으로 선택합니다.</p>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;p class="highlight"&gt;이 문단만 강조됩니다.&lt;/p&gt;
+&lt;p&gt;이 문단은 일반입니다.&lt;/p&gt;</code></pre>
+<pre><code>/* CSS */
+.highlight {
+    color: red;
+    font-weight: bold;
+}</code></pre>
+
+            <h3>ID 선택자</h3>
+            <p>하나의 고유한 요소에만 적용할 때 사용합니다. CSS에서 <code>#</code>으로 선택합니다.</p>
+<pre><code>&lt;h1 id="main-title"&gt;메인 제목&lt;/h1&gt;</code></pre>
+<pre><code>#main-title {
+    font-size: 48px;
+}</code></pre>
+
+            <p>아래에서 3가지 선택자를 모두 체험해 보세요. CSS 탭에서 <code>.highlight</code>의 <code>color</code>를 바꿔보세요!</p>
+
+            <!-- Playground: 선택자 비교 -->
+            <div class="playground" id="pg-ch4-selectors">
+                <div class="playground-header">
+                    <div class="playground-tabs">
+                        <button class="playground-tab active" data-lang="html">HTML</button>
+                        <button class="playground-tab" data-lang="css">CSS</button>
+                    </div>
+                    <div class="playground-actions">
+                        <span class="playground-label">LIVE</span>
+                        <button class="playground-btn playground-btn-run" onclick="runPlayground(this.closest('.playground'))">실행</button>
+                        <button class="playground-btn playground-btn-reset">초기화</button>
+                    </div>
+                </div>
+                <div class="playground-editor-wrap">
+                    <textarea class="playground-editor active" data-lang="html" rows="6"><h1 id="main-title">메인 제목 (id 선택자)</h1>
+<p>일반 문단 (태그 선택자로 회색 적용)</p>
+<p class="highlight">강조된 문단 (class 선택자로 빨간색)</p>
+<p>또 다른 일반 문단</p>
+<p class="highlight">이것도 highlight 클래스!</p></textarea>
+                    <textarea class="playground-editor" data-lang="css" rows="12">/* 태그 선택자: 모든 p에 적용 */
+p {
+    color: gray;
+    font-size: 16px;
+}
+
+/* Class 선택자: .highlight에만 적용 */
+.highlight {
+    color: red;
+    font-weight: bold;
+}
+
+/* ID 선택자: #main-title에만 적용 */
+#main-title {
+    font-size: 36px;
+    color: #1d3461;
+    border-bottom: 3px solid #2dd4bf;
+    padding-bottom: 8px;
+}</textarea>
+                </div>
+                <div class="playground-preview-header">
+                    <div class="playground-preview-dot"></div>
+                    미리보기
+                </div>
+                <div class="playground-preview">
+                    <iframe sandbox="allow-scripts"></iframe>
+                </div>
+            </div>
+
+            <h2>4.5 실습: 자기소개 페이지에 스타일 입히기</h2>
+            <p>챕터 3에서 만든 <code>index.html</code>에 CSS를 추가합니다. <code>&lt;head&gt;</code> 태그 안에 아래 <code>&lt;style&gt;</code> 블록을 추가해 보세요.</p>
+
+<div class="code-header"><span>index.html — &lt;head&gt; 안에 추가</span></div>
+<pre><code>&lt;style&gt;
+    body {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #fafafa;
+        color: #333;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 36px;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    h2 {
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 8px;
+        margin-top: 32px;
+    }
+
+    a {
+        color: #0066cc;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+&lt;/style&gt;</code></pre>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>위 CSS를 추가하기 전과 후의 페이지 비교. 스타일 적용 전 (허전한 상태) → 적용 후 (정돈된 상태) 화면 전환</div>
+            </div>
+
+            <p>저장 후 브라우저에서 새로고침하면, 훨씬 정돈된 페이지를 확인할 수 있습니다.</p>
+
+            <div class="callout callout-info">
+                <div class="callout-title">Info</div>
+                CSS의 모든 속성을 외울 필요는 없습니다. 다음 챕터에서 GitHub Copilot을 활용해 원하는 디자인을 AI에게 요청하는 방법을 배웁니다.
+            </div>
+
+            <div class="page-nav">
+                <a href="#" onclick="showPage('dev-tools')">
+                    <span class="nav-label">이전</span>
+                    <span class="nav-title">&larr; HTML 기초</span>
+                </a>
+                <a href="#" class="next" onclick="showPage('ai-tools')">
+                    <span class="nav-label">다음</span>
+                    <span class="nav-title">GitHub Copilot &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- Page: ai-tools (05_GitHub_Copilot_활용하기) -->
+        <!-- ============================================ -->
+        <div class="page" id="page-ai-tools" style="display:none;">
+            <div class="breadcrumb">
+                <a href="#" onclick="showPage('intro')">홈</a>
+                <span>/</span>
+                <span>GitHub Copilot</span>
+            </div>
+            <h1 class="page-title">GitHub Copilot 활용하기</h1>
+            <p class="page-meta">챕터 5</p>
+
+            <p>이 챕터가 이번 튜토리얼의 <strong>핵심</strong>입니다.</p>
+            <p>GitHub Copilot은 코드를 대신 작성해 주는 AI 도구입니다. 여러분이 "무엇을 만들고 싶은지"를 설명하면, Copilot이 코드를 생성합니다. 코딩을 처음 하더라도 원하는 결과물을 만들어 낼 수 있습니다.</p>
+
+            <h2>5.1 Copilot 사용 방법: Copilot Chat</h2>
+            <p>VS Code에서 Copilot을 사용하는 가장 쉬운 방법은 <strong>Copilot Chat</strong>입니다.</p>
+
+            <h3>Copilot Chat 열기</h3>
+            <ul>
+                <li>단축키: <code>Ctrl + Shift + I</code> (macOS: <code>Cmd + Shift + I</code>)</li>
+                <li>또는 좌측 사이드바에서 <strong>Copilot Chat 아이콘</strong>을 클릭합니다.</li>
+            </ul>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>VS Code에서 Copilot Chat 패널을 여는 과정 (단축키 또는 아이콘 클릭)</div>
+            </div>
+
+            <p>Chat 패널이 열리면, 채팅하듯이 자연어로 질문하거나 요청을 입력할 수 있습니다.</p>
+
+            <h2>5.2 Copilot에게 효과적으로 요청하는 법</h2>
+            <p>Copilot은 여러분이 입력하는 내용의 품질에 따라 결과가 달라집니다. 아래 원칙을 따르면 더 좋은 코드를 받을 수 있습니다.</p>
+
+            <h3>원칙 1: 구체적으로 요청하기</h3>
+<div class="code-header"><span>❌ 나쁜 예시</span></div>
+<pre><code>자기소개 페이지 만들어줘</code></pre>
+
+<div class="code-header"><span>✅ 좋은 예시</span></div>
+<pre><code>HTML과 CSS를 사용해서 자기소개 페이지를 만들어줘.
+- 상단에 프로필 사진(파일명: profile.jpg), 이름, 학과
+- 중간에 관심 분야 목록
+- 하단에 Instagram, GitHub 링크
+- 배경색은 어두운 네이비, 글자색은 흰색
+- 모바일에서도 잘 보이게 해줘</code></pre>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>Copilot Chat에 나쁜 예시를 입력했을 때의 결과 vs 좋은 예시를 입력했을 때의 결과 비교</div>
+            </div>
+
+            <h3>원칙 2: 단계적으로 요청하기</h3>
+            <p>한 번에 모든 것을 요청하기보다, 단계적으로 요청하면 결과가 더 좋습니다.</p>
+<pre><code>1단계: "HTML 기본 구조와 프로필 섹션을 만들어줘"
+2단계: "관심 분야 섹션을 추가해줘"
+3단계: "전체 페이지에 CSS 스타일을 적용해줘. 다크 테마로"
+4단계: "프로필 사진을 원형으로 바꾸고, 가운데 정렬해줘"</code></pre>
+
+            <h3>원칙 3: 수정 요청 시 변경 사항을 명확히 말하기</h3>
+<div class="code-header"><span>❌ 나쁜 예시</span></div>
+<pre><code>이거 좀 예쁘게 바꿔줘</code></pre>
+
+<div class="code-header"><span>✅ 좋은 예시</span></div>
+<pre><code>h1 제목의 글자 크기를 48px로 키우고, 아래에 색상 하이라이트 박스를 추가해줘</code></pre>
+
+            <h2>5.3 Copilot Chat 실전 워크플로우</h2>
+
+            <h3>Step 1: 기본 구조 생성</h3>
+            <p>Copilot Chat에 아래와 같이 입력합니다.</p>
+<pre><code>HTML 파일 하나로 자기소개 웹 페이지를 만들어줘.
+CSS는 &lt;style&gt; 태그로 HTML 파일 안에 포함시켜줘.
+구조:
+- 프로필 영역: 사진, 이름("홍길동"), 한 줄 소개
+- 기본 정보: 학과, 학번
+- 관심 분야: 3-4개 항목
+- SNS 링크: Instagram, GitHub
+스타일: 깔끔하고 모던한 느낌, 밝은 배경</code></pre>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>위 프롬프트를 Copilot Chat에 입력 → 코드가 생성되는 과정 → "Insert at Cursor" 또는 코드 복사 과정</div>
+            </div>
+
+            <h3>Step 2: 생성된 코드 적용</h3>
+            <p>Copilot이 생성한 코드를 <code>index.html</code>에 붙여넣습니다.</p>
+            <ol>
+                <li>Copilot Chat 응답에서 코드 블록 상단의 <strong>복사</strong> 버튼을 클릭합니다.</li>
+                <li><code>index.html</code> 파일의 내용을 전체 선택(<code>Ctrl+A</code>) 후 붙여넣기(<code>Ctrl+V</code>)합니다.</li>
+                <li>저장(<code>Ctrl+S</code>) 후 브라우저에서 확인합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>Copilot이 생성한 코드를 복사 → index.html에 붙여넣기 → 저장 → 브라우저에서 확인하는 과정</div>
+            </div>
+
+            <h3>Step 3: 수정 요청</h3>
+            <p>결과가 마음에 들지 않는 부분이 있다면, 추가로 요청합니다.</p>
+<pre><code>프로필 사진을 원형으로 만들고, 크기를 200px로 해줘.
+이름 아래에 "꿈꾸는 개발자"라는 한 줄 소개를 추가해줘.
+전체 배경색을 #f5f5f5로 변경해줘.</code></pre>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>수정 요청 입력 → 수정된 코드 생성 → 적용 후 브라우저에서 변경 사항 확인</div>
+            </div>
+
+            <h3>Step 4: 반복</h3>
+            <p>원하는 결과가 나올 때까지 Step 2-3을 반복합니다.</p>
+
+            <h2>5.4 Copilot Inline Suggestion (자동 완성)</h2>
+            <p>Copilot Chat 외에도, 코드를 직접 작성할 때 <strong>자동으로 코드를 제안</strong>해 주는 기능이 있습니다.</p>
+            <ul>
+                <li>HTML 파일에서 코드를 작성하기 시작합니다.</li>
+                <li>입력을 잠시 멈추면, 회색 텍스트로 Copilot의 제안이 나타납니다.</li>
+                <li><code>Tab</code> 키를 누르면 제안을 수락합니다.</li>
+                <li><code>Esc</code> 키를 누르면 제안을 무시합니다.</li>
+            </ul>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>HTML 파일에서 &lt;div class="를 입력하면 Copilot이 자동으로 나머지를 제안하는 모습 → Tab으로 수락하는 과정</div>
+            </div>
+
+            <h3>주석으로 의도 전달하기</h3>
+            <p>HTML 주석을 작성하면, Copilot이 주석 내용을 읽고 관련 코드를 제안합니다.</p>
+<pre><code>&lt;!-- 프로필 사진을 원형으로 표시하는 섹션 --&gt;</code></pre>
+            <p>위 주석을 작성하고 Enter를 누르면, Copilot이 관련 HTML/CSS 코드를 자동으로 제안합니다.</p>
+
+            <h2>5.5 Copilot 사용 시 주의사항</h2>
+
+            <div class="callout callout-warn">
+                <div class="callout-title">주의 1: Copilot의 코드가 항상 완벽하지는 않습니다</div>
+                생성된 코드가 예상과 다르게 동작할 수 있습니다. 브라우저에서 반드시 확인하세요.
+            </div>
+
+            <div class="callout callout-warn">
+                <div class="callout-title">주의 2: 이미지 파일 경로는 직접 확인하세요</div>
+                Copilot이 <code>src="profile.jpg"</code>라고 작성하더라도, 실제 파일명이 <code>profile.png</code>이면 이미지가 표시되지 않습니다.
+            </div>
+
+            <div class="callout callout-info">
+                <div class="callout-title">이해 못한 코드가 있으면 질문하세요</div>
+                Copilot Chat에 "이 코드가 무슨 뜻이야?"라고 물어보면 설명해 줍니다.
+            </div>
+<pre><code>이 CSS 코드가 무슨 뜻인지 설명해줘:
+display: flex;
+justify-content: center;
+align-items: center;</code></pre>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>Copilot Chat에 코드 설명을 요청하고, 한국어로 설명을 받는 과정</div>
+            </div>
+
+            <div class="callout callout-warn">
+                <div class="callout-title">주의 4: 민감한 개인정보는 입력하지 마세요</div>
+                Copilot은 클라우드 서비스이므로, 주민등록번호나 비밀번호 같은 정보를 코드에 포함하지 마세요.
+            </div>
+
+            <div class="page-nav">
+                <a href="#" onclick="showPage('git-basics')">
+                    <span class="nav-label">이전</span>
+                    <span class="nav-title">&larr; CSS 기초</span>
+                </a>
+                <a href="#" class="next" onclick="showPage('ai-prompt')">
+                    <span class="nav-label">다음</span>
+                    <span class="nav-title">PR 페이지 제작 &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- Page: ai-prompt (06_PR_페이지_제작_실습) -->
+        <!-- ============================================ -->
+        <div class="page" id="page-ai-prompt" style="display:none;">
+            <div class="breadcrumb">
+                <a href="#" onclick="showPage('intro')">홈</a>
+                <span>/</span>
+                <span>PR 페이지 제작</span>
+            </div>
+            <h1 class="page-title">PR 페이지 제작 실습</h1>
+            <p class="page-meta">챕터 6</p>
+
+            <p>이 챕터에서는 실제로 PR 페이지를 처음부터 끝까지 제작합니다. 앞에서 배운 HTML, CSS, GitHub Copilot을 모두 활용합니다.</p>
+
+            <h2>6.1 제작 전 준비</h2>
+
+            <h3>필요한 자료 준비</h3>
+            <p>PR 페이지에 넣을 내용을 미리 정리해 두면 작업이 수월합니다. 아래 항목을 메모장이나 노트 앱에 적어 두세요.</p>
+
+            <table>
+                <thead><tr><th>항목</th><th>예시</th></tr></thead>
+                <tbody>
+                    <tr><td>이름</td><td>홍길동</td></tr>
+                    <tr><td>학과 / 학번</td><td>컴퓨터공학과 / 24학번</td></tr>
+                    <tr><td>한 줄 소개</td><td>게임 개발에 관심 있는 입문자</td></tr>
+                    <tr><td>프로필 사진</td><td>본인 사진 또는 아바타 이미지 1장</td></tr>
+                    <tr><td>관심 분야</td><td>웹 개발, AI, 게임</td></tr>
+                    <tr><td>경험</td><td>고등학교 코딩 동아리, 정보처리기능사 등</td></tr>
+                    <tr><td>스킬 / 자격증</td><td>Python 기초, 한국사능력검정 등</td></tr>
+                    <tr><td>SNS 링크</td><td>Instagram, GitHub, 블로그 URL</td></tr>
+                </tbody>
+            </table>
+
+            <h3>프로필 사진 준비</h3>
+            <ol>
+                <li>사용할 프로필 사진을 <code>my-pr-page</code> 폴더에 복사합니다.</li>
+                <li>파일명을 간단하게 변경합니다. (예: <code>profile.jpg</code>)</li>
+            </ol>
+
+            <div class="callout callout-warn">
+                <div class="callout-title">파일명 규칙</div>
+                파일명에는 영어, 숫자, 하이픈(<code>-</code>)만 사용하세요. 한글이나 공백이 포함되면 오류가 발생할 수 있습니다.
+                <br>✅ <code>profile.jpg</code>, <code>my-photo.png</code>
+                <br>❌ <code>내사진.jpg</code>, <code>profile photo.png</code>
+            </div>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>사진 파일을 my-pr-page 폴더로 복사하고, 파일명을 profile.jpg로 변경하는 과정</div>
+            </div>
+
+            <h2>6.2 PR 페이지의 구성 예시</h2>
+            <p>완성된 PR 페이지는 아래와 같은 섹션으로 구성됩니다.</p>
+
+<pre><code>┌─────────────────────────────────┐
+│         [프로필 사진]            │
+│           홍길동                 │
+│      컴퓨터공학과 24학번          │
+│   "게임 개발에 관심 있는 입문자"   │
+├─────────────────────────────────┤
+│  About Me                       │
+│  자기소개 텍스트...              │
+├─────────────────────────────────┤
+│  관심 분야                      │
+│  🎮 게임 개발  🌐 웹 개발  🤖 AI │
+├─────────────────────────────────┤
+│  경험                           │
+│  - 고등학교 코딩 동아리           │
+│  - 정보처리기능사                 │
+├─────────────────────────────────┤
+│  SNS & Links                    │
+│  [Instagram] [GitHub] [Blog]    │
+└─────────────────────────────────┘</code></pre>
+
+            <p>이 구조를 참고하되, 본인 스타일에 맞게 자유롭게 변형할 수 있습니다.</p>
+
+            <h2>6.3 Step by Step 제작</h2>
+
+            <h3>Step 1: 기본 페이지 생성</h3>
+            <p><code>index.html</code>을 열고, Copilot Chat에 아래와 같이 요청합니다.</p>
+
+<pre><code>HTML과 CSS를 사용해서 개인 자기소개(PR) 웹 페이지를 만들어줘.
+CSS는 &lt;style&gt; 태그로 HTML 안에 포함시켜줘.
+JavaScript는 사용하지 마.
+
+페이지 구성:
+1. 상단 프로필 영역
+   - 원형 프로필 사진 (파일명: profile.jpg)
+   - 이름: (본인 이름)
+   - 학과, 학번
+   - 한 줄 소개
+2. About Me 섹션
+   - 2-3문장 자기소개
+3. 관심 분야 섹션
+   - 카드 형태로 3-4개 항목
+4. 경험 섹션
+   - 리스트 형태
+5. SNS 링크 섹션
+   - 가로로 나열된 링크 버튼들
+
+디자인:
+- 깔끔하고 모던한 느낌
+- 배경색: 밝은 흰색 계열
+- 반응형 (모바일에서도 잘 보이게)
+- 최대 너비 700px, 가운데 정렬</code></pre>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">Tip</div>
+                프롬프트를 그대로 복사하지 말고, <strong>본인의 정보</strong>로 수정해서 입력하세요.
+            </div>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>위 프롬프트 전체를 Copilot Chat에 입력 → 코드가 생성되는 과정 → 코드 복사 → index.html에 붙여넣기 → 브라우저에서 확인하는 전체 과정</div>
+            </div>
+
+            <h3>Step 2: 내용 커스터마이징</h3>
+            <p>Copilot이 생성한 코드에서 <strong>텍스트 내용</strong>을 본인 정보로 수정합니다.</p>
+            <ol>
+                <li>VS Code에서 <code>Ctrl + H</code> (macOS: <code>Cmd + H</code>)로 찾기/바꾸기를 엽니다.</li>
+                <li>"홍길동"을 본인 이름으로, "컴퓨터공학과"를 본인 학과로 바꿉니다.</li>
+                <li>관심 분야, 경험 등도 본인 내용으로 교체합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>VS Code에서 찾기/바꾸기 기능으로 이름, 학과 등을 변경하는 과정</div>
+            </div>
+
+            <h3>Step 3: 프로필 사진 적용</h3>
+            <p>코드에서 <code>src="profile.jpg"</code> 부분을 확인합니다. 본인의 사진 파일명과 일치하는지 확인하세요.</p>
+
+            <p>사진이 표시되지 않는 경우 확인할 사항:</p>
+            <ul>
+                <li>사진 파일이 <code>index.html</code>과 <strong>같은 폴더</strong>에 있는지</li>
+                <li>파일명이 정확히 일치하는지 (대소문자 구분)</li>
+                <li>파일 확장자가 맞는지 (<code>.jpg</code> vs <code>.png</code> vs <code>.jpeg</code>)</li>
+            </ul>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>프로필 사진이 표시되지 않는 경우 → 파일 경로 확인 → 파일명 수정 → 정상 표시되는 과정</div>
+            </div>
+
+            <h3>Step 4: 디자인 수정</h3>
+            <p>기본 디자인이 마음에 들지 않으면 Copilot Chat에 수정을 요청합니다.</p>
+
+            <p>수정 요청 예시들:</p>
+<pre><code>배경색을 다크 테마로 바꿔줘. 배경색 #1a1a2e, 글자색은 흰색으로.</code></pre>
+<pre><code>관심 분야 카드에 마우스를 올리면 살짝 위로 올라가는 hover 효과를 추가해줘.</code></pre>
+<pre><code>SNS 링크 버튼을 아이콘처럼 동그랗게 만들어줘.</code></pre>
+<pre><code>프로필 사진 주위에 그라데이션 테두리를 추가해줘.</code></pre>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>다크 테마 변경 요청 → 코드 수정 → 브라우저에서 변경된 디자인 확인</div>
+            </div>
+
+            <h3>Step 4-1: 라이브 코드 실험실</h3>
+            <p>아래 실험실은 학생들이 PR 페이지의 구조와 스타일 변화를 빠르게 체감할 수 있도록 만든 미니 샌드박스입니다. 제출용 페이지는 JavaScript 없이 완성해도 괜찮지만, <strong>HTML, CSS, JS를 한 화면에서 같이 만져보면</strong> 코드가 훨씬 덜 낯설어집니다.</p>
+
+            <div class="playground" id="pg-ch6-pr-lab">
+                <div class="playground-header">
+                    <div class="playground-tabs">
+                        <button class="playground-tab active" data-lang="html">HTML</button>
+                        <button class="playground-tab" data-lang="css">CSS</button>
+                        <button class="playground-tab" data-lang="js">JS</button>
+                    </div>
+                    <div class="playground-actions">
+                        <span class="playground-label">LIVE</span>
+                        <button class="playground-btn playground-btn-run" onclick="runPlayground(this.closest('.playground'))">실행</button>
+                        <button class="playground-btn playground-btn-reset">초기화</button>
+                    </div>
+                </div>
+                <div class="playground-editor-wrap">
+                    <textarea class="playground-editor active" data-lang="html" rows="23"><div class="pr-demo">
+    <section class="hero">
+        <div class="avatar">HJ</div>
+        <div>
+            <p class="eyebrow">YEONGHANA PR PAGE</p>
+            <h1>홍길동</h1>
+            <p class="tagline" id="tagline">웹과 AI를 연결하는 개발자를 꿈꿉니다.</p>
+            <button id="tagline-button">한 줄 소개 바꾸기</button>
+        </div>
+    </section>
+
+    <section class="grid">
+        <article class="card">
+            <h2>관심 분야</h2>
+            <ul class="chip-list">
+                <li>프론트엔드</li>
+                <li>UI 디자인</li>
+                <li>AI 서비스</li>
+            </ul>
+        </article>
+        <article class="card">
+            <h2>링크</h2>
+            <div class="link-row">
+                <a href="#">Instagram</a>
+                <a href="#">GitHub</a>
+                <a href="#">Blog</a>
+            </div>
+        </article>
+    </section>
+</div></textarea>
+                    <textarea class="playground-editor" data-lang="css" rows="34">:root {
+    --accent: #0f766e;
+    --accent-soft: #ccfbf1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+    background:
+        radial-gradient(circle at top left, #dbeafe 0, transparent 34%),
+        linear-gradient(135deg, #f8fafc, #eff6ff 55%, #ecfeff 100%);
+    color: #0f172a;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.pr-demo {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.hero,
+.card {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+    backdrop-filter: blur(8px);
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 28px;
+    border-radius: 28px;
+}
+
+.avatar {
+    width: 120px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 32px;
+    background: linear-gradient(135deg, var(--accent), #1d4ed8);
+    color: white;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+h1 {
+    margin: 0;
+    font-size: 40px;
+    line-height: 1.1;
+}
+
+.tagline {
+    margin: 12px 0 18px;
+    color: #334155;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+button {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 18px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.card {
+    border-radius: 24px;
+    padding: 20px;
+}
+
+.card h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+}
+
+.chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.chip-list li,
+.link-row a {
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+}
+
+.link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.link-row a {
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 16px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .avatar {
+        margin: 0 auto;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}</textarea>
+                    <textarea class="playground-editor" data-lang="js" rows="18">const intros = [
+    '웹과 AI를 연결하는 개발자를 꿈꿉니다.',
+    '사용자가 바로 이해되는 인터페이스를 만들고 싶습니다.',
+    '팀 프로젝트에서 프론트엔드와 기획을 함께 맡는 것이 목표입니다.'
+];
+
+const accents = [
+    { accent: '#0f766e', soft: '#ccfbf1' },
+    { accent: '#7c3aed', soft: '#ede9fe' },
+    { accent: '#ea580c', soft: '#ffedd5' }
+];
+
+let introIndex = 0;
+const tagline = document.getElementById('tagline');
+const button = document.getElementById('tagline-button');
+
+button.addEventListener('click', () => {
+    introIndex = (introIndex + 1) % intros.length;
+    tagline.textContent = intros[introIndex];
+    document.documentElement.style.setProperty('--accent', accents[introIndex].accent);
+    document.documentElement.style.setProperty('--accent-soft', accents[introIndex].soft);
+    console.log('소개 문구 변경:', intros[introIndex]);
+});</textarea>
+                </div>
+                <div class="playground-preview-header">
+                    <div class="playground-preview-meta">
+                        <div class="playground-preview-dot"></div>
+                        <span>미리보기</span>
+                    </div>
+                    <div class="playground-preview-tools">
+                        <div class="playground-viewport-switcher">
+                            <button class="playground-viewport active" data-width="100%">Desktop</button>
+                            <button class="playground-viewport" data-width="768px">Tablet</button>
+                            <button class="playground-viewport" data-width="390px">Mobile</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="playground-preview">
+                    <div class="playground-frame">
+                        <iframe sandbox="allow-scripts"></iframe>
+                    </div>
+                </div>
+                <div class="playground-console">
+                    <div class="playground-console-header">Console / Error</div>
+                    <div class="playground-console-output"></div>
+                </div>
+            </div>
+
+            <div class="playground-coach">
+                <div class="playground-coach-title">이 실험실로 바로 해볼 것</div>
+                <ul>
+                    <li>HTML 탭에서 이름, 관심 분야, 링크 이름을 본인 정보로 바꿔보세요.</li>
+                    <li>CSS 탭에서 <code>--accent</code> 색상과 <code>.hero</code>의 배경을 바꿔 보세요.</li>
+                    <li>JS 탭의 <code>intros</code> 문장을 수정한 뒤 버튼을 눌러 반응을 확인해 보세요.</li>
+                    <li><code>Mobile</code> 버튼을 눌러 카드가 세로로 쌓이는지 확인해 보세요.</li>
+                </ul>
+            </div>
+
+            <h3>Step 5: 최종 점검</h3>
+            <p>제출 전에 아래 항목을 확인합니다.</p>
+
+            <ul class="checklist">
+                <li>이름, 학과, 학번이 정확한가</li>
+                <li>프로필 사진이 정상적으로 표시되는가</li>
+                <li>SNS 링크가 올바르게 연결되는가 (클릭 시 해당 페이지로 이동)</li>
+                <li>오탈자가 없는가</li>
+                <li>브라우저 창 크기를 줄여도 레이아웃이 깨지지 않는가</li>
+            </ul>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>브라우저 창 크기를 늘렸다 줄였다 하면서 반응형 레이아웃이 유지되는지 확인하는 과정</div>
+            </div>
+
+            <h2>6.4 디자인 참고: 레이아웃 아이디어</h2>
+
+            <h3>스타일 A: 미니멀 카드형</h3>
+            <p>흰색 카드가 중앙에 배치된 깔끔한 디자인</p>
+            <p>Copilot 요청 키워드: <em>"카드 스타일, 그림자 효과, 미니멀"</em></p>
+
+            <h3>스타일 B: 다크 테마</h3>
+            <p>어두운 배경에 밝은 텍스트, 네온 포인트 컬러</p>
+            <p>Copilot 요청 키워드: <em>"다크 테마, 네온 컬러, 사이버펑크 느낌"</em></p>
+
+            <h3>스타일 C: 그라데이션 배경</h3>
+            <p>부드러운 그라데이션 배경과 반투명 카드</p>
+            <p>Copilot 요청 키워드: <em>"그라데이션 배경, 반투명 카드, 글래스모피즘"</em></p>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">이미지 예정</div>
+                <div>위 3가지 스타일의 각 스크린샷 이미지 3장 (이운지가 3가지 스타일로 미리 페이지를 제작해서 캡처하는 것을 권장)</div>
+            </div>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">Tip</div>
+                Copilot에게 "포트폴리오 사이트 디자인 트렌드"에 대해 질문하면 더 많은 아이디어를 얻을 수 있습니다.
+            </div>
+
+            <h2>6.5 자주 발생하는 문제와 해결 방법</h2>
+
+            <h3>문제 1: 이미지가 표시되지 않는다</h3>
+            <p><strong>원인</strong>: 파일 경로가 잘못되었거나, 파일이 같은 폴더에 없음</p>
+            <p><strong>해결</strong>:</p>
+            <ol>
+                <li><code>index.html</code>과 이미지 파일이 <strong>같은 폴더</strong>에 있는지 확인</li>
+                <li>HTML 코드의 <code>src</code> 값이 실제 파일명과 정확히 일치하는지 확인</li>
+            </ol>
+<pre><code>&lt;!-- 파일명이 Profile.JPG인 경우 --&gt;
+&lt;img src="Profile.JPG" alt="프로필"&gt;  ✅
+&lt;img src="profile.jpg" alt="프로필"&gt;  ❌ (대소문자 불일치)</code></pre>
+
+            <h3>문제 2: CSS가 적용되지 않는다</h3>
+            <p><strong>원인</strong>: <code>&lt;style&gt;</code> 태그가 <code>&lt;head&gt;</code> 바깥에 있거나, 문법 오류</p>
+            <p><strong>해결</strong>: Copilot Chat에 요청합니다.</p>
+<pre><code>이 HTML 코드에서 태그가 올바르게 열리고 닫히는지 검사해줘.
+문제가 있으면 수정해줘.</code></pre>
+
+            <h3>문제 3: Copilot이 예상과 다른 코드를 생성한다</h3>
+            <p><strong>해결</strong>: 요청을 더 구체적으로 다시 작성하거나, "이 부분만 수정해줘"라고 범위를 좁혀서 요청합니다.</p>
+
+            <h3>문제 4: 모바일에서 레이아웃이 깨진다</h3>
+            <p><strong>해결</strong>: Copilot에게 요청합니다.</p>
+<pre><code>이 페이지를 반응형으로 만들어줘.
+모바일(화면 너비 600px 이하)에서 카드가 세로로 쌓이도록 해줘.</code></pre>
+
+            <div class="page-nav">
+                <a href="#" onclick="showPage('ai-tools')">
+                    <span class="nav-label">이전</span>
+                    <span class="nav-title">&larr; GitHub Copilot</span>
+                </a>
+                <a href="#" class="next" onclick="showPage('submit')">
+                    <span class="nav-label">다음</span>
+                    <span class="nav-title">제출하기 &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- Page: submit (07_제출하기) -->
+        <!-- ============================================ -->
+        <div class="page" id="page-submit" style="display:none;">
+            <div class="breadcrumb">
+                <a href="#" onclick="showPage('intro')">홈</a>
+                <span>/</span>
+                <span>제출하기</span>
+            </div>
+            <h1 class="page-title">영하나 홈페이지에 제출하기</h1>
+            <p class="page-meta">챕터 7</p>
+
+            <p>PR 페이지가 완성되었다면, 영하나 홈페이지에 소스코드를 업로드합니다. 업로드된 코드는 영하나 웹서버가 렌더링하여 다른 분들에게 공개됩니다.</p>
+
+            <h2>7.1 제출 전 최종 체크리스트</h2>
+            <p>제출 전에 아래 항목을 다시 한번 확인하세요.</p>
+
+            <ul class="checklist">
+                <li><strong>파일 구성 확인</strong>: <code>index.html</code> 파일 1개 + 이미지 파일(들)</li>
+                <li><strong>파일명 확인</strong>: 모든 파일명에 한글, 공백이 포함되어 있지 않은지</li>
+                <li><strong>이미지 표시 확인</strong>: 브라우저에서 프로필 사진이 정상적으로 보이는지</li>
+                <li><strong>링크 동작 확인</strong>: SNS 링크를 클릭했을 때 올바른 페이지로 이동하는지</li>
+                <li><strong>반응형 확인</strong>: 브라우저 창 크기를 줄여도 콘텐츠가 잘 보이는지</li>
+                <li><strong>오탈자 확인</strong>: 이름, 학과, 학번 등 기본 정보에 오류가 없는지</li>
+            </ul>
+
+            <h2>7.2 제출 방법</h2>
+
+            <div class="callout callout-warn">
+                <div class="callout-title">안내</div>
+                이 섹션은 영하나 홈페이지의 실제 업로드 인터페이스에 맞춰 내용을 업데이트해야 합니다. 아래는 예시 절차이며, 실제 홈페이지 UI에 따라 스크린샷과 설명을 교체해주세요.
+            </div>
+
+            <h3>Step 1: 영하나 홈페이지 로그인</h3>
+            <ol>
+                <li>영하나 홈페이지에 접속합니다.</li>
+                <li>OT에서 생성한 계정으로 로그인합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>영하나 홈페이지 로그인 과정</div>
+            </div>
+
+            <h3>Step 2: PR 페이지 제출 메뉴 이동</h3>
+            <ol>
+                <li>로그인 후 메인 페이지에서 <strong>PR 페이지 제출</strong> 메뉴를 찾습니다.</li>
+                <li>해당 메뉴를 클릭합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>메인 페이지에서 제출 메뉴로 이동하는 과정</div>
+            </div>
+
+            <h3>Step 3: 파일 업로드</h3>
+            <ol>
+                <li><strong>소스코드 업로드</strong> 버튼을 클릭합니다.</li>
+                <li><code>index.html</code> 파일과 이미지 파일을 함께 선택하여 업로드합니다.</li>
+                <li>업로드 완료 후 <strong>제출</strong> 버튼을 클릭합니다.</li>
+            </ol>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>파일 선택 → 업로드 → 제출 완료 과정</div>
+            </div>
+
+            <h3>Step 4: 결과 확인</h3>
+            <p>제출이 완료되면 영하나 웹서버가 코드를 렌더링합니다. 홈페이지에서 본인의 PR 페이지가 공개된 것을 확인합니다.</p>
+
+            <div class="gif-placeholder">
+                <div class="gif-icon">▶</div>
+                <div class="gif-label">GIF 예정</div>
+                <div>제출 후 공개된 PR 페이지를 홈페이지에서 열어보는 과정</div>
+            </div>
+
+            <h2>7.3 제출 후 수정이 필요할 때</h2>
+            <p>제출 후에도 수정이 가능합니다.</p>
+            <ol>
+                <li>VS Code에서 <code>index.html</code>을 수정합니다.</li>
+                <li>홈페이지의 PR 페이지 제출 메뉴에서 <strong>수정</strong> 또는 <strong>재업로드</strong>를 클릭합니다.</li>
+                <li>수정된 파일을 다시 업로드합니다.</li>
+            </ol>
+
+            <div class="callout callout-info">
+                <div class="callout-title">Info</div>
+                마감일 이전에는 수정을 자유롭게 할 수 있습니다. 마감 이후에는 이운지에게 별도로 문의하세요.
+            </div>
+
+            <h2>7.4 제출 시 자주 발생하는 문제</h2>
+
+            <h3>문제 1: 업로드 후 이미지가 표시되지 않는다</h3>
+            <p><strong>원인</strong>: 이미지 파일을 함께 업로드하지 않았거나, 경로가 일치하지 않음</p>
+            <p><strong>해결</strong>:</p>
+            <ol>
+                <li><code>index.html</code>과 이미지 파일을 <strong>모두</strong> 업로드했는지 확인</li>
+                <li>HTML 코드의 <code>src</code> 값이 업로드한 파일명과 일치하는지 확인</li>
+            </ol>
+
+            <h3>문제 2: 페이지가 깨져서 표시된다</h3>
+            <p><strong>원인</strong>: HTML 태그가 올바르게 닫히지 않았을 가능성</p>
+            <p><strong>해결</strong>: Copilot Chat에 아래와 같이 요청합니다.</p>
+<pre><code>이 HTML 코드에서 태그가 올바르게 열리고 닫히는지 검사해줘.
+문제가 있으면 수정해줘.</code></pre>
+
+            <div class="page-nav">
+                <a href="#" onclick="showPage('ai-prompt')">
+                    <span class="nav-label">이전</span>
+                    <span class="nav-title">&larr; PR 페이지 제작</span>
+                </a>
+                <a href="#" class="next" onclick="showPage('resources')">
+                    <span class="nav-label">다음</span>
+                    <span class="nav-title">더 배우고 싶다면 &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- Page: resources (08_더_배우고_싶다면) -->
+        <!-- ============================================ -->
+        <div class="page" id="page-resources" style="display:none;">
+            <div class="breadcrumb">
+                <a href="#" onclick="showPage('intro')">홈</a>
+                <span>/</span>
+                <span>더 배우고 싶다면</span>
+            </div>
+            <h1 class="page-title">더 배우고 싶다면</h1>
+            <p class="page-meta">챕터 8</p>
+
+            <p>PR 페이지 제출을 완료했다면 축하합니다. 여기까지 따라왔다면, 웹 개발의 기초적인 흐름을 경험한 것입니다.</p>
+            <p>이 챕터에서는 혼자 더 공부하고 싶을 때 참고할 수 있는 자료를 안내합니다.</p>
+
+            <h2>8.1 무료 학습 사이트</h2>
+
+            <h3>웹 개발 기초</h3>
+            <table>
+                <thead><tr><th>사이트</th><th>설명</th><th>언어</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong><a href="https://developer.mozilla.org/ko/" target="_blank">MDN Web Docs</a></strong></td>
+                        <td>Mozilla 재단이 운영하는 웹 기술 공식 문서. HTML, CSS, JavaScript 레퍼런스로 가장 신뢰할 수 있음</td>
+                        <td>영어 (일부 한국어)</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="https://www.w3schools.com" target="_blank">W3Schools</a></strong></td>
+                        <td>웹 기술을 예제 중심으로 배울 수 있는 사이트. 브라우저에서 바로 코드를 실행해 볼 수 있음</td>
+                        <td>영어</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="https://opentutorials.org" target="_blank">생활코딩</a></strong></td>
+                        <td>한국어로 된 웹 개발 입문 강의. 비전공자를 위한 설명이 잘 되어 있음</td>
+                        <td>한국어</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>무료 온라인 강의</h3>
+            <table>
+                <thead><tr><th>플랫폼</th><th>추천 강의</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong><a href="https://www.freecodecamp.org" target="_blank">freeCodeCamp</a></strong></td>
+                        <td>Responsive Web Design 코스 (HTML/CSS 기초부터 실습까지)</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="https://www.theodinproject.com" target="_blank">The Odin Project</a></strong></td>
+                        <td>웹 개발 전체를 체계적으로 배울 수 있는 무료 커리큘럼</td>
+                    </tr>
+                    <tr>
+                        <td><strong><a href="https://nomadcoders.co" target="_blank">노마드 코더스</a></strong></td>
+                        <td>한국어 강의. 무료 코스에서 HTML/CSS 기초 학습 가능</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>8.2 다음 프로젝트를 위한 예습</h2>
+            <p>2차 프로젝트(족보 + 강의 평가 공유 웹 앱)에서는 <strong>JavaScript</strong>와 <strong>서버 통신</strong>이 필요합니다. 미리 감을 잡아두고 싶다면 아래 주제를 살펴보세요.</p>
+
+            <ul>
+                <li><strong>JavaScript 기초</strong>: 변수, 함수, 조건문, 반복문, DOM 조작</li>
+                <li><strong>Git &amp; GitHub</strong>: 버전 관리와 협업 도구 (2차 프로젝트에서 팀 작업 시 필수)</li>
+                <li><strong>API 통신</strong>: 서버와 데이터를 주고받는 방법 (fetch, JSON)</li>
+            </ul>
+
+            <div class="callout callout-info">
+                <div class="callout-title">Info</div>
+                지금 당장 이 내용을 공부하지 않아도 됩니다. 2차 프로젝트 시작 전에 별도의 튜토리얼이 제공될 예정입니다.
+            </div>
+
+            <h2>8.3 AI 도구 활용 팁</h2>
+            <p>GitHub Copilot 외에도 개발에 도움이 되는 AI 도구들이 있습니다.</p>
+
+            <table>
+                <thead><tr><th>도구</th><th>용도</th><th>비고</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>GitHub Copilot</strong></td>
+                        <td>코드 자동 완성, 코드 생성</td>
+                        <td>Education 라이선스 무료</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ChatGPT</strong></td>
+                        <td>코드 질문, 오류 해결, 개념 설명</td>
+                        <td>무료 버전 사용 가능</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Gemini</strong></td>
+                        <td>ChatGPT와 유사한 AI 챗 도구</td>
+                        <td>Google 계정으로 무료 사용</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stack Overflow</strong></td>
+                        <td>개발 관련 질의응답 커뮤니티</td>
+                        <td>AI는 아니지만, 오류 해결에 매우 유용</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout callout-warn">
+                <div class="callout-title">주의</div>
+                AI 도구를 사용하더라도, 생성된 코드가 어떤 역할을 하는지 이해하려는 노력이 중요합니다. 이해 없이 코드를 복사-붙여넣기만 하면, 오류가 발생했을 때 스스로 해결할 수 없습니다.
+            </div>
+
+            <h2>8.4 도움이 필요할 때</h2>
+            <ul>
+                <li><strong>디스코드 질문답변 채널</strong>: 언제든 질문을 올려주세요. 이운지과 다른 분들이 답변해 드립니다.</li>
+                <li><strong>정기 활동 시간</strong>: 대면/비대면 활동 시간에 직접 질문할 수 있습니다.</li>
+                <li><strong>Copilot Chat</strong>: 코드 관련 질문은 Copilot에게 먼저 물어보는 것도 좋은 방법입니다.</li>
+            </ul>
+
+            <div class="callout callout-tip">
+                <div class="callout-title">마치며</div>
+                수고하셨습니다. 여러분의 PR 페이지가 영하나 홈페이지에 빛나길 기대합니다.
+            </div>
+
+            <div class="page-nav">
+                <a href="#" onclick="showPage('submit')">
+                    <span class="nav-label">이전</span>
+                    <span class="nav-title">&larr; 제출하기</span>
+                </a>
+                <div></div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script>
+    // ── Page navigation ──
+    const pages = ['intro', 'dev-basics', 'setup', 'dev-tools', 'git-basics', 'ai-tools', 'ai-prompt', 'submit', 'resources'];
+
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+
+        // Show target page
+        const target = document.getElementById('page-' + pageId);
+        if (target) target.style.display = 'block';
+
+        // Update sidebar active state
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.classList.toggle('active', item.dataset.page === pageId);
+        });
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+
+        // Close mobile sidebar
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('open');
+    }
+
+    // ── Mobile sidebar toggle ──
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('open');
+        document.getElementById('sidebarOverlay').classList.toggle('open');
+    }
+
+    // ── Search (simple keyword highlight) ──
+    function handleSearch(e) {
+        if (e.key !== 'Enter') return;
+        const query = e.target.value.trim().toLowerCase();
+        if (!query) return;
+
+        for (const pageId of pages) {
+            const el = document.getElementById('page-' + pageId);
+            if (el && el.textContent.toLowerCase().includes(query)) {
+                showPage(pageId);
+                return;
+            }
+        }
+        alert('검색 결과가 없습니다.');
+    }
+
+    // ── Scroll progress bar ──
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        document.getElementById('progressBar').style.width = progress + '%';
+    });
+
+    // ── Code Playground Engine ──
+    function resetPlaygroundConsole(pg) {
+        const output = pg.querySelector('.playground-console-output');
+        if (!output) return;
+        output.innerHTML = '<div class="playground-console-empty">console.log() 출력과 JavaScript 오류가 여기에 표시됩니다.</div>';
+    }
+
+    function appendPlaygroundConsole(pg, kind, text) {
+        const output = pg.querySelector('.playground-console-output');
+        if (!output) return;
+
+        const empty = output.querySelector('.playground-console-empty');
+        if (empty) empty.remove();
+
+        const safeKind = ['info', 'warn', 'error'].includes(kind) ? kind : 'log';
+        const line = document.createElement('div');
+        line.className = 'playground-console-line' + (safeKind === 'log' ? '' : ' is-' + safeKind);
+        line.textContent = text;
+        output.appendChild(line);
+        output.scrollTop = output.scrollHeight;
+    }
+
+    function setPlaygroundViewport(pg, width) {
+        const frame = pg.querySelector('.playground-frame');
+        if (!frame) return;
+        frame.style.setProperty('--preview-width', width || '100%');
+    }
+
+    function initPlayground(id) {
+        const pg = document.getElementById(id);
+        if (!pg) return;
+        const tabs = pg.querySelectorAll('.playground-tab');
+        const editors = pg.querySelectorAll('.playground-editor');
+        const viewportButtons = Array.from(pg.querySelectorAll('.playground-viewport'));
+        const liveDelay = Number(pg.dataset.liveDelay || 350);
+        let liveTimer = null;
+
+        // tab switching
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                editors.forEach(e => e.classList.remove('active'));
+                tab.classList.add('active');
+                const target = pg.querySelector('.playground-editor[data-lang="' + tab.dataset.lang + '"]');
+                if (target) target.classList.add('active');
+            });
+        });
+
+        // viewport switching
+        if (viewportButtons.length) {
+            const defaultViewport = pg.querySelector('.playground-viewport.active') || viewportButtons[0];
+
+            viewportButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    viewportButtons.forEach(item => item.classList.toggle('active', item === btn));
+                    setPlaygroundViewport(pg, btn.dataset.width);
+                });
+            });
+
+            viewportButtons.forEach(item => item.classList.toggle('active', item === defaultViewport));
+            setPlaygroundViewport(pg, defaultViewport.dataset.width);
+        }
+
+        // reset
+        const resetBtn = pg.querySelector('.playground-btn-reset');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                editors.forEach(ed => { ed.value = ed.dataset.original; });
+                if (viewportButtons.length) {
+                    const firstViewport = viewportButtons[0];
+                    viewportButtons.forEach(item => item.classList.toggle('active', item === firstViewport));
+                    setPlaygroundViewport(pg, firstViewport.dataset.width);
+                }
+                runPlayground(pg);
+            });
+        }
+
+        // store originals
+        editors.forEach(ed => {
+            ed.dataset.original = ed.value;
+            ed.addEventListener('input', () => {
+                window.clearTimeout(liveTimer);
+                liveTimer = window.setTimeout(() => runPlayground(pg), liveDelay);
+            });
+        });
+
+        // tab key support in textareas
+        editors.forEach(ed => {
+            ed.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    e.preventDefault();
+                    const start = ed.selectionStart;
+                    const end = ed.selectionEnd;
+                    ed.value = ed.value.substring(0, start) + '    ' + ed.value.substring(end);
+                    ed.selectionStart = ed.selectionEnd = start + 4;
+                }
+            });
+        });
+
+        resetPlaygroundConsole(pg);
+        runPlayground(pg);
+    }
+
+    function runPlayground(pg) {
+        const htmlEd = pg.querySelector('.playground-editor[data-lang="html"]');
+        const cssEd = pg.querySelector('.playground-editor[data-lang="css"]');
+        const jsEd = pg.querySelector('.playground-editor[data-lang="js"]');
+        const iframe = pg.querySelector('iframe');
+        if (!iframe) return;
+
+        const html = htmlEd ? htmlEd.value : '';
+        const css = cssEd ? cssEd.value : '';
+        const js = jsEd ? jsEd.value : '';
+        const runId = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+        const escapedCss = css.replace(/<\/style/gi, '<\\/style');
+        const escapedJs = js.replace(/<\/script/gi, '<\\/script');
+
+        pg.dataset.runId = runId;
+        resetPlaygroundConsole(pg);
+
+        const fullDoc = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>body{font-family:'Noto Sans KR',sans-serif;padding:16px;margin:0;} ${escapedCss}</style>
+</head>
+<body>
+${html}
+<script>
+(function() {
+    const meta = {
+        source: 'wiki-playground',
+        playgroundId: ${JSON.stringify(pg.id)},
+        runId: ${JSON.stringify(runId)}
+    };
+    const send = (type, payload) => {
+        window.parent.postMessage(Object.assign({}, meta, { type, payload }), '*');
+    };
+    const stringify = (value) => {
+        if (typeof value === 'string') return value;
+        try {
+            return JSON.stringify(value);
+        } catch (error) {
+            return String(value);
+        }
+    };
+    const reportHeight = () => {
+        const bodyHeight = document.body ? document.body.scrollHeight : 0;
+        const docHeight = document.documentElement ? document.documentElement.scrollHeight : 0;
+        send('height', { height: Math.max(bodyHeight, docHeight, 80) });
+    };
+
+    ['log', 'info', 'warn', 'error'].forEach((kind) => {
+        const original = console[kind];
+        console[kind] = (...args) => {
+            send('console', { kind, text: args.map(stringify).join(' ') });
+            original.apply(console, args);
+        };
+    });
+
+    window.addEventListener('error', (event) => {
+        send('console', { kind: 'error', text: event.message + ' (' + event.lineno + ':' + event.colno + ')' });
+    });
+
+    window.addEventListener('load', () => {
+        reportHeight();
+        if (window.ResizeObserver && document.body) {
+            new ResizeObserver(() => reportHeight()).observe(document.body);
+        }
+    });
+
+    window.addEventListener('click', () => {
+        window.requestAnimationFrame(reportHeight);
+    });
+})();
+<\/script>
+<script>${escapedJs}<\/script>
+</body>
+</html>`;
+
+        iframe.onload = () => {
+            try {
+                const h = iframe.contentDocument.body.scrollHeight;
+                iframe.style.height = Math.min(Math.max(h + 20, 80), 520) + 'px';
+            } catch (error) {}
+        };
+        iframe.srcdoc = fullDoc;
+    }
+
+    window.addEventListener('message', (event) => {
+        const data = event.data;
+        if (!data || data.source !== 'wiki-playground' || !data.playgroundId) return;
+
+        const pg = document.getElementById(data.playgroundId);
+        if (!pg || pg.dataset.runId !== data.runId) return;
+
+        if (data.type === 'height' && data.payload && typeof data.payload.height === 'number') {
+            const iframe = pg.querySelector('iframe');
+            if (iframe) {
+                iframe.style.height = Math.min(Math.max(data.payload.height + 20, 80), 520) + 'px';
+            }
+            return;
+        }
+
+        if (data.type === 'console' && data.payload && data.payload.text) {
+            appendPlaygroundConsole(pg, data.payload.kind, data.payload.text);
+        }
+    });
+
+    // Initialize all playgrounds on page
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.playground').forEach(pg => initPlayground(pg.id));
+    });
+</script>
+
+</body>
+</html>
