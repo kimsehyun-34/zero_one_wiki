@@ -156,22 +156,87 @@ body {
 }
 
 .sidebar-section {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
+/* 대분류 */
+.sidebar-category {
+    margin-top: 8px;
+    border-top: 1px solid var(--border);
+}
+
+.sidebar-category-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.sidebar-category-title:hover {
+    background: #d6e4f7;
+}
+
+.category-arrow {
+    font-size: 14px;
+    color: var(--accent);
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.category-arrow.rotated {
+    transform: rotate(-90deg);
+}
+
+/* 중분류 감싸는 영역 */
+.sidebar-category-body {
+    border-left: 3px solid var(--accent);
+    margin-left: 0;
+    overflow: hidden;
+    max-height: 1000px;
+    transition: max-height 0.25s ease, opacity 0.2s ease;
+    opacity: 1;
+}
+
+.sidebar-category-body.collapsed {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* 중분류 */
 .sidebar-section-title {
-    padding: 8px 20px;
+    padding: 8px 16px 4px 14px;
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--accent);
+    margin-top: 4px;
 }
 
+.sidebar-section-link {
+    cursor: pointer;
+}
+
+.sidebar-section-link:hover {
+    color: var(--accent-hover);
+}
+
+.sidebar-section-link.active {
+    color: var(--primary);
+}
+
+/* 소분류 - 메인 항목 */
 .sidebar-item {
     display: flex;
     align-items: center;
-    padding: 7px 20px 7px 24px;
+    padding: 6px 16px 6px 20px;
     color: var(--text-secondary);
     text-decoration: none;
     font-size: 14px;
@@ -203,9 +268,18 @@ body {
     font-weight: 500;
 }
 
+/* 소분류 - 세부 항목 */
 .sidebar-sub-item {
-    padding-left: 48px;
+    padding-left: 36px;
     font-size: 13px;
+    color: var(--text-light);
+}
+
+.sidebar-sub-item.active {
+    color: var(--accent) !important;
+    background: var(--accent-light) !important;
+    border-left-color: var(--accent) !important;
+    font-weight: 600;
 }
 
 /* 본문 영역 */
